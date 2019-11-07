@@ -6,6 +6,8 @@ from django.core import serializers
 from .models import Event
 from .forms import EventForm
 
+from .models import Profile, Event, Invitation, Contact, Comment
+
 # Create your views here.
 
 
@@ -41,10 +43,14 @@ def home(request):
 
 
 def public_list(request):
-    return render(request, 'event_list.html')
+    events = Event.objects.all()
+    context = {'events': events}
+    return render(request, 'event_list.html', context)
 
 
 def private_list(request):
+    events = Event.objects.all()
+    context = {'events': events}
     return render(request, 'event_list.html')
 
 
