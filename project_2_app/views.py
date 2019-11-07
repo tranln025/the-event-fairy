@@ -49,8 +49,8 @@ def private_list(request):
 
 
 
-def event_detail(request):
-    event = Event.objects.get(id=pk)
+def event_detail(request,event_pk):
+    event = Event.objects.get(id=event_pk)
     context = {"event":event}
     return render(request, 'event_detail.html', context)
 
@@ -64,10 +64,10 @@ def event_create(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
         if form.is_valid():
-            event = form.save(commit=False)
+            event = form.save()
             event.use = request.event
             event.save()
-        return redirect('event_detail.html', pk=event.pk)
+        return redirect('event_detail.html', id=event_pk)
     else:
         form = EventForm()
     context = {'form':form, 'header': "Add New Event"}

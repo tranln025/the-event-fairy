@@ -7,6 +7,8 @@ class Profile(models.Model):
     image_link = models.TextField()
     # image_upload = models.ImageField(upload_to='prof_images/')
 
+
+
 class Event(models.Model):
     title = models.CharField(max_length=255)
     datetime = models.CharField(max_length=100)
@@ -21,8 +23,8 @@ class Event(models.Model):
     category = models.CharField(max_length=100)
     date_created = models.DateTimeField(auto_now_add=True)
 
-def __str__(self):
-    return self.title
+    def __str__(self):
+        return self.title
 
 class Invitation(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_invitations')
