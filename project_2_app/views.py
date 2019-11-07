@@ -43,15 +43,15 @@ def home(request):
 
 
 def public_list(request):
-    events = Event.objects.all()
-    context = {'events': events}
+    events = Event.objects.filter(type='Public')
+    context = {'events': events, 'type': 'Public'}
     return render(request, 'event_list.html', context)
 
 
 def private_list(request):
-    events = Event.objects.all()
-    context = {'events': events}
-    return render(request, 'event_list.html')
+    events = Event.objects.filter(type='Private')
+    context = {'events': events, 'type': 'Private'}
+    return render(request, 'event_list.html', context)
 
 
 
