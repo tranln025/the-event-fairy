@@ -29,27 +29,6 @@ def about(request):
 
 
 
-
-
-def register(request):
-    return render(request, 'register.html')
-
-
-
-
-
-
-def login(request):
-    return render(request, 'login.html')
-
-
-
-def logout(request):
-    return redirect('landing')
-
-
-
-
 def home(request):
     return render(request, 'home.html')
 
@@ -91,14 +70,5 @@ def event_edit(request):
 def event_delete(request):
     return render(request, 'event_form.html')
 
-
-
-
-
-
-########## Show Profile ##########
-
-def profile(request):
-    return render(request, 'profile.html')
 
 

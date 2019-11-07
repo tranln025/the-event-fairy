@@ -36,6 +36,4 @@ class Comment(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='author_comments')
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="event_comments")
     content = models.TextField()
-    rating = models.PositiveIntegerField()
-    rating_count = models.PositiveIntegerField(0)
     date_created = models.DateTimeField(auto_now_add=True)
