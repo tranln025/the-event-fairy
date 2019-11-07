@@ -16,7 +16,6 @@ def register(request):
         email_form = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
-        date_joined = request.POST['date_joined']
         # validate that passwords match
         if password == password2:
         # check if username exists in db
@@ -35,7 +34,7 @@ def register(request):
                     password=password, 
                     first_name=first_name, 
                     last_name=last_name,
-                    date_joined=date_joined)
+                    )
                     user.save()
                     return redirect('home')
         else:
