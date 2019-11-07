@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers 
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
+
+from .models import Event
+from .forms import EventForm
 
 # Create your views here.
 
@@ -47,7 +50,9 @@ def private_list(request):
 
 
 def event_detail(request):
-    return render(request, 'event_detail.html')
+    event = Event.objects.get(id=pk)
+    context = {"event":event}
+    return render(request, 'event_detail.html', context)
 
 
 
@@ -56,7 +61,17 @@ def event_detail(request):
 
 
 def event_create(request):
-    return render(request, 'event_form.html')
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.use = request.event
+            event.save()
+        return redirect('event_detail.html', pk=event.pk)
+    else:
+        form = EventForm()
+    context = {'form':form, 'header': "Add New Event"}
+    return render(request, 'event_form.html', context)
 
 
 

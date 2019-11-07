@@ -2,44 +2,11 @@
 
 {% block content %}
 
-<h1>Event Form</h1>
-
 <section class="form-section">
-    <form action="{% url 'event_create' %}" method="POST" class="event-form">
+    <h1>Event Form</h1>
+    <form method="POST" class="event-form">
         {% csrf_token %}
-        <p>
-            <label for="event_title">Event Title</label>
-            <input type="text" name="event_title" required maxlength="255" minlength="2">
-        </p>
-        <img src="{{image_link}}" alt="{{image.title}}">
-        <p>
-            <label for="date_time">Date and Time</label>
-            <input type="text" name="date_time" required maxlength="25" minlength="2">
-        </p>
-        <p>
-            <label for="location">Location</label>
-            <input type="text" name="location" required maxlength="100" minlength="2">
-        </p>
-        <p>
-            <label for="address">Street Address</label>
-            <input type="text" name="address" required maxlength="100" minlength="2">
-        </p>
-        <p>
-            <label for="city">City</label>
-            <input type="text" name="city" required maxlength="100" minlength="4">
-        </p>
-        <p>
-            <label for="state">State</label>
-            <input type="text" name="state" required maxlength="25" minlength="2">
-        </p>
-        <p>
-            <label for="type">Event Type</label>
-            <input type="text" name="type" required maxlength="100" minlength="4">
-        </p>
-        <p>
-            <label for="category">Event Category</label>
-            <input type="text" name="category" required maxlength="100" minlength="4">
-        </p>
+        {{form.as_p}}
         <button type="submit">Submit</button>
     </form>
 </section>

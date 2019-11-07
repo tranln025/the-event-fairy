@@ -21,6 +21,9 @@ class Event(models.Model):
     category = models.CharField(max_length=100)
     date_created = models.DateTimeField(auto_now_add=True)
 
+def __str__(self):
+    return self.title
+
 class Invitation(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_invitations')
     guest = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='guest_invitations')
