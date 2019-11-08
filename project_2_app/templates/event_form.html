@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="form-section">
+    <h1>{{header}}</h1>
+    <form method="POST" class="event-form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+{% endblock %}
