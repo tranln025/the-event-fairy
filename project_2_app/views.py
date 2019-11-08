@@ -68,6 +68,7 @@ def event_detail(request,event_pk):
 
 def event_create(request):
     if request.method == 'POST':
+        print(request.user)
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save(commit=False)
@@ -78,6 +79,7 @@ def event_create(request):
         form = EventForm()
     context = {'form':form, 'header': "Add New Event"}
     return render(request, 'event_form.html', context)
+   
 
 
 
