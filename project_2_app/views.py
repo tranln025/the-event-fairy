@@ -74,7 +74,7 @@ def event_create(request):
             event = form.save(commit=False)
             event.creator = request.user
             event.save()
-        return redirect('event_detail.html', event_pk=event.pk)
+        return redirect('event_detail', event_pk=event.pk)
     else:
         form = EventForm()
     context = {'form':form, 'header': "Add New Event"}
@@ -95,3 +95,5 @@ def event_delete(request):
 
 
 
+def contact_create(request):
+    return render(request, '', context)

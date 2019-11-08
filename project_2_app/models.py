@@ -91,17 +91,17 @@ class Event(models.Model):
 
 class Invitation(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_invitations')
-    guest = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='guest_invitations')
+    guest = models.ForeignKey(User, on_delete=models.CASCADE, related_name='guest_invitations')
     confirmation = models.BooleanField(default=False)
     date_invited = models.DateTimeField(auto_now_add=True)
 
 class Contact(models.Model):
-    user1 = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='user1_contacts')
-    user2 = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='user2_contacts')
+    user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user1_contacts')
+    user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user2_contacts')
     date_added = models.DateTimeField(auto_now_add=True)
 
 class Comment(models.Model):
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='author_comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_comments')
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="event_comments")
     content = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
