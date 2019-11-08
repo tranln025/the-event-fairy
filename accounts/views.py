@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 
-from project_2_app.models import Profile, Contact
-from project_2_app.forms import ProfPicForm, ContactForm
+from project_2_app.models import Profile, Contact, Invitation
+from project_2_app.forms import ProfPicForm
 
 # Create your views here.
 
@@ -68,7 +69,8 @@ def logout(request):
 def profile(request):
     user = request.user
     username = user.username
-    events = user.events.all()
+    created_events = user.events.all()
+    invited_events = Invitation.objects.filter(guest=user)
     contacts = Contact.objects.filter(user1=user)
     if request.method == 'POST':
         form = ProfPicForm(request.POST)
@@ -79,7 +81,7 @@ def profile(request):
             return redirect('profile')
     else:
         form = ProfPicForm()
-    context = {'user': user, 'username': username, 'form': form, 'events': events, 'contacts': contacts}
+    context = {'user': user, 'username': username, 'form': form, 'created_events': created_events, 'contacts': contacts, 'invited_events': invited_events}
     return render(request, 'profile.html', context)
 
 def contacts_list(request):
@@ -87,22 +89,18 @@ def contacts_list(request):
     context = {'contacts': contacts}
     return render(request, 'contacts_list.html', context)
 
+@csrf_exempt
 def contact_add(request):
     if request.method == 'POST':
-        username=request.POST['user2']
-        form = ContactForm(request.POST)
-        print(form.is_valid())
-        if form.is_valid():
-            if User.objects.filter(username=username).exists():
-                contact = form.save(commit=False)
-                contact.user1 = request.user
-                contact.save()
-                return redirect('contacts_list')
-            else:
-                context = {'error': 'Username does not exist. Please try again.'}
-                print(context)
-                return render(request, 'contact_form.html', context)
+        username = request.POST['user2']
+        print(username)
+        if User.objects.filter(username=username).exists():
+            new_contact = User.objects.get(username=username)
+            contact = Contact.objects.create(user1 = request.user, user2 = new_contact)
+            return redirect('contacts_list')
+        else:
+            context = {'error': 'Username does not exist. Please try again.'}
+            print(context)
+            return render(request, 'contact_form.html', context)
     else:
-        form = ContactForm()
-    context = {'form': form}
-    return render(request, 'contact_form.html', context)
+        return render(request, 'contact_form.html')

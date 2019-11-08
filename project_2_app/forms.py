@@ -6,10 +6,10 @@ class EventForm(forms.ModelForm):
         model = Event
         fields = ('title', 'datetime', 'location', 'address', 'city', 'state', 'image_link', 'type', 'category')
 
-class ContactForm(forms.ModelForm):
-    class Meta:
-        model = Contact
-        fields = ('user2',)
+# class ContactForm(forms.ModelForm):
+#     class Meta:
+#         model = Contact
+#         fields = ('user2',)
 
 class ProfPicForm(forms.ModelForm):
     class Meta:
