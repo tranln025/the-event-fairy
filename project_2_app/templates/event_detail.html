@@ -14,11 +14,8 @@
 <h6>{{event.type}}</h6>
 <h6>{{event.category}}</h6>
 <h6>{{event.date_created}}</h6>
-<li class="tracks">
-<!-- <a href="{% url 'event_edit' pk=event.pk %}" class="edit">Edit</a> -->
 
-<a href="{% url 'event_delete' pk=event.pk %}" class="delete">Delete</a>
-</li>
-
+<a href="{% url 'event_edit' event_pk=event.pk %}"><button type="submit" class="event-edit">Edit</button></a>
+<a href="{% url 'home' %}"><button type="submit" class="event-delete">Delete</button></a>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers 
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 
 from .models import Event
 from .forms import EventForm
@@ -47,7 +47,7 @@ def public_list(request):
     context = {'events': events, 'type': 'Public'}
     return render(request, 'event_list.html', context)
 
-
+@login_required
 def private_list(request):
     events = Event.objects.filter(type='Private')
     context = {'events': events, 'type': 'Private'}
@@ -65,7 +65,7 @@ def event_detail(request,event_pk):
 
 ########## Editing Events ##########
 
-
+@login_required
 def event_create(request):
     if request.method == 'POST':
         print(request.user)
@@ -83,22 +83,22 @@ def event_create(request):
 
 
 
-
+@login_required
 def event_edit(request, event_pk):
     event = Event.objects.get(id=event_pk)
     if request.method == 'POST':
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             event=form.save()
-            return redirect('event_detail', pk=event.pk)
-        else:
-            form = EventForm(instance=event)
-        context = {'form':form, 'header':f"Edit {event.title}"}
+            return redirect('event_detail', event_pk=event.pk)
+    else:
+        form = EventForm(instance=event)
+    context = {'form':form, 'header':f"Edit {event.title}"}
     return render(request, 'event_form.html', context)
 
 
 
-
+@login_required
 def event_delete(request, event_pk):
     Event.objects.get(id=event_pk).delete()
     return redirect('home')
