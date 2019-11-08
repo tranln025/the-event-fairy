@@ -3,5 +3,8 @@
 {% block content %}
 
 <h1>Home</h1>
+<a href="{% url 'public_list' %}"><button>Browse Public Events</button></a>
+<a href="{% url 'private_list' %}"><button>Browse Private Events</button></a>
+<a href="{% url 'event_create' %}"><button>Create an Event</button></a>
 
 {% endblock %}
