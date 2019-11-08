@@ -84,14 +84,24 @@ def event_create(request):
 
 
 
-def event_edit(request):
-    return render(request, 'event_form.html')
+def event_edit(request, event_pk):
+    event = Event.objects.get(id=event_pk)
+    if request.method == 'POST':
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            event=form.save()
+            return redirect('event_detail', pk=event.pk)
+        else:
+            form = EventForm(instance=event)
+        context = {'form':form, 'header':f"Edit {event.title}"}
+    return render(request, 'event_form.html', context)
 
 
 
 
-def event_delete(request):
-    return render(request, 'event_form.html')
+def event_delete(request, event_pk):
+    Event.objects.get(id=event_pk).delete()
+    return redirect('home')
 
 
 
