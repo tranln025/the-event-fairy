@@ -3,9 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers 
 from django.contrib.auth.decorators import login_required
 
-from .models import Event
 from .forms import EventForm
-
 from .models import Profile, Event, Invitation, Contact, Comment
 
 # Create your views here.
@@ -111,3 +109,6 @@ def event_delete(request, event_pk):
 
 def contact_create(request):
     return render(request, '', context)
+
+def invite_contact(request):
+    return render(request, 'invite_form.html')

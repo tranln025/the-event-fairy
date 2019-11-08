@@ -95,10 +95,16 @@ class Invitation(models.Model):
     confirmation = models.BooleanField(default=False)
     date_invited = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.event.title} - {self.guest.username}"
+
 class Contact(models.Model):
     user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user1_contacts')
     user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user2_contacts')
     date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user2}"
 
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_comments')

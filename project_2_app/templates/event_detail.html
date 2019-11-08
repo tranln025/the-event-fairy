@@ -5,6 +5,7 @@
 <h1>{{event.title}}</h1>
 
 <img src="{{image_link}}" alt="{{image.title}}">
+<h4>{{event.description}}</h4>
 <h4>{{event.datetime}}</h4>
 <h4>{{event.location}}</h4>
 <h5>{{event.address}}</h5>
@@ -13,7 +14,7 @@
 <h6>{{event.creator}}</h6>
 <h6>{{event.type}}</h6>
 <h6>{{event.category}}</h6>
-<h6>{{event.date_created}}</h6>
+<h6>Date Created: {{event.date_created}}</h6>
 
 <a href="{% url 'event_edit' event_pk=event.pk %}"><button type="submit" class="event-edit">Edit</button></a>
 <a href="{% url 'event_delete' event_pk=event.pk %}"><button type="submit" class="event-delete">Delete</button></a>

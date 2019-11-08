@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="form-section">
+        <form action="{% url 'contact_add' %}" method="POST" class="add-contact-form">
+            {% csrf_token %}
+            <p>
+                <label for="user2">Find a user</label>
+                <input type="text" name="user2" maxlength="25" required>
+            </p>
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+            <button class="submit">Add Contact</button>
+        </form>
+    </section>
+{% endblock %}

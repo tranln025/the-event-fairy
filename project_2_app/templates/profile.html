@@ -3,6 +3,64 @@
 {% block content %}
 
     
-    <h1>Welcome, {{ user.username }}</h1>
+    <h1>Welcome, {{ username }}</h1>
 
+    {% if user.image_link %}
+        <img src="{{ user.image_link }}" alt="profile picture">
+    {% else %}
+        <section class="form-section">
+            <p>Upload a profile picture</p>
+            <form method="post" class="profile-pic-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save</button>
+            </form>
+        </section>
+    {% endif %}
+
+    <h2>Contacts</h2>
+        <a href="{% url 'contact_add' %}">+</a>
+        <ul class="list-group">
+            {% for contact in contacts %}
+                <li class="list-group-item">{{ contact }}</li>
+            {% endfor %}
+        </ul>
+        
+    <h2>Your Events</h2>
+        {% if created_events %}
+            {% for event in created_events %}
+                <div class="list-group">
+                    <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ event.title }}</h5>
+                            <small>Click to view details</small>
+                        </div>
+                        <p class="mb-1">{{ event.datetime }}</p>
+                        <p class="mb-1">{{ event.location }}</p>
+                        <small>Hosted by {{ event.creator }}</small>
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>You have not created any events.</p>
+        {% endif %}
+
+    <h2>Events You're Invited To</h2>
+        {% if invited_events %}
+            {% for event in invited_events %}
+            <div class="list-group">
+                <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ event.title }}</h5>
+                        <small>Click to view details</small>
+                    </div>
+                    <p class="mb-1">{{ event.datetime }}</p>
+                    <p class="mb-1">{{ event.location }}</p>
+                    <small>Hosted by {{ event.creator }}</small>
+                </a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>You have no invites.</p>
+        {% endif %}
 {% endblock %}
