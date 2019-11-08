@@ -16,7 +16,6 @@
 <h6>{{event.date_created}}</h6>
 
 <a href="{% url 'event_edit' event_pk=event.pk %}"><button type="submit" class="event-edit">Edit</button></a>
-<a href="{% url 'event_delete' event_pk=event.pk %}"><button class="event-delete">Delete</button>
-</a>
+<a href="{% url 'event_delete' event_pk=event.pk %}"><button type="submit" class="event-delete">Delete</button></a>
 
 {% endblock %}
