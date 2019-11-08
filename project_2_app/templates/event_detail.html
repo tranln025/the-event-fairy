@@ -2,6 +2,23 @@
 
 {% block content %}
 
-<h1>Event Details</h1>
+<h1>{{event.title}}</h1>
+
+<img src="{{image_link}}" alt="{{image.title}}">
+<h4>{{event.datetime}}</h4>
+<h4>{{event.location}}</h4>
+<h5>{{event.address}}</h5>
+<h5>{{event.city}}</h5>
+<h5>{{event.state}}</h5>
+<h6>{{event.creator}}</h6>
+<h6>{{event.type}}</h6>
+<h6>{{event.category}}</h6>
+<h6>{{event.date_created}}</h6>
+<li class="tracks">
+<!-- <a href="{% url 'event_edit' pk=event.pk %}" class="edit">Edit</a> -->
+
+<a href="{% url 'event_delete' pk=event.pk %}" class="delete">Delete</a>
+</li>
+
 
 {% endblock %}
