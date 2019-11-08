@@ -91,9 +91,9 @@ def event_edit(request, event_pk):
         if form.is_valid():
             event=form.save()
             return redirect('event_detail', pk=event.pk)
-        else:
-            form = EventForm(instance=event)
-        context = {'form':form, 'header':f"Edit {event.title}"}
+    else:
+        form = EventForm(instance=event)
+    context = {'form':form, 'header':f"Edit {event.title}"}
     return render(request, 'event_form.html', context)
 
 
