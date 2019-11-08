@@ -1,24 +1,23 @@
 from django.shortcuts import render, redirect
-
 from django.contrib import auth
 from django.contrib.auth.models import User
+
+from project_2_app.models import Profile, Contact
+from project_2_app.forms import ProfPicForm, ContactForm
+
 # Create your views here.
 
 
 
 def register(request):
-  # if post
     if request.method == "POST":
-        # build out data from form
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         username_form = request.POST['username']
         email_form = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
-        # validate that passwords match
         if password == password2:
-        # check if username exists in db
             if User.objects.filter(username=username_form).exists():
                 context = {'error': 'Username is already taken.'}
                 return render(request, 'register.html', context)
@@ -27,7 +26,6 @@ def register(request):
                     context = {'error':'That email already exists.'}
                     return render(request, 'register.html', context)
                 else: 
-                    # if everything is ok create account
                     user = User.objects.create_user(
                     username=username_form, 
                     email=email_form, 
@@ -41,7 +39,6 @@ def register(request):
             context = {'error':'Passwords do not match'}
             return render(request, 'register.html', context)
     else:
-        # if not post send form 
         return render(request, 'register.html')
 
 
@@ -53,7 +50,6 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-
             return redirect('home')
         else:
             context = {'error': 'Invalid Credentials'}
@@ -70,4 +66,43 @@ def logout(request):
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    user = request.user
+    username = user.username
+    events = user.events.all()
+    contacts = Contact.objects.filter(user1=user)
+    if request.method == 'POST':
+        form = ProfPicForm(request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('profile')
+    else:
+        form = ProfPicForm()
+    context = {'user': user, 'username': username, 'form': form, 'events': events, 'contacts': contacts}
+    return render(request, 'profile.html', context)
+
+def contacts_list(request):
+    contacts = Contact.objects.filter(user1=request.user)
+    context = {'contacts': contacts}
+    return render(request, 'contacts_list.html', context)
+
+def contact_add(request):
+    if request.method == 'POST':
+        username=request.POST['user2']
+        form = ContactForm(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            if User.objects.filter(username=username).exists():
+                contact = form.save(commit=False)
+                contact.user1 = request.user
+                contact.save()
+                return redirect('contacts_list')
+            else:
+                context = {'error': 'Username does not exist. Please try again.'}
+                print(context)
+                return render(request, 'contact_form.html', context)
+    else:
+        form = ContactForm()
+    context = {'form': form}
+    return render(request, 'contact_form.html', context)

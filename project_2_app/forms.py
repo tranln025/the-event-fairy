@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event, Contact
+from . models import Event, Contact, Profile
 
 class EventForm(forms.ModelForm):
     class Meta:
@@ -10,3 +10,8 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ('user2',)
+
+class ProfPicForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('image_link',)
