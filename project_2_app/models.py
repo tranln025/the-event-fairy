@@ -81,7 +81,7 @@ class Event(models.Model):
     state = models.CharField(max_length=2, choices=tuple(state_abbrs.items()), default='CA')
     image_link = models.TextField()
     # image_upload = models.ImageField(upload_to='prof_images/')
-    creator = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='events')
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
     type = models.CharField(max_length=15, choices=(('Public', 'Public'), ('Private', 'Private')), default='Public')
     category = models.CharField(max_length=100)
     date_created = models.DateTimeField(auto_now_add=True)

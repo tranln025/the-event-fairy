@@ -68,16 +68,18 @@ def event_detail(request,event_pk):
 
 def event_create(request):
     if request.method == 'POST':
+        print(request.user)
         form = EventForm(request.POST)
         if form.is_valid():
-            event = form.save()
-            event.use = request.event
+            event = form.save(commit=False)
+            event.creator = request.user
             event.save()
-        return redirect('event_detail.html', id=event_pk)
+        return redirect('event_detail.html', event_pk=event.pk)
     else:
         form = EventForm()
     context = {'form':form, 'header': "Add New Event"}
     return render(request, 'event_form.html', context)
+   
 
 
 
