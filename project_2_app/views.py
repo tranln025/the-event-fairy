@@ -101,7 +101,7 @@ def event_edit(request, event_pk):
 @login_required
 def event_delete(request, event_pk):
     event = Event.objects.get(id=event_pk)
-    Event.objects.get(id=event_pk).delete()
+    event.delete()
     if event.type == 'Public':
         return redirect('public_list')
     elif event.type == 'Private':
