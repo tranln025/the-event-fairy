@@ -22,7 +22,9 @@
         <a href="{% url 'contact_add' %}">+</a>
         <ul class="list-group">
             {% for contact in contacts %}
-                <li class="list-group-item">{{ contact }}</li>
+                <li class="list-group-item">{{ contact }}
+                    <a href="{% url 'contact_delete' contact_pk=contact.pk %}">Delete</a>
+                </li>
             {% endfor %}
         </ul>
         

@@ -95,9 +95,8 @@ def contacts_list(request):
 def contact_add(request):
     if request.method == 'POST':
         username = request.POST['user2']
-        print(username)
         if User.objects.filter(username=username).exists():
-            new_contact = User.objects.get(username=username)
+            new_contact = User.objects.get(username__iexact=username)
             contact = Contact.objects.create(user1 = request.user, user2 = new_contact)
             return redirect('contacts_list')
         else:
@@ -106,3 +105,7 @@ def contact_add(request):
             return render(request, 'contact_form.html', context)
     else:
         return render(request, 'contact_form.html')
+
+def contact_delete(request, contact_pk):
+    Contact.objects.get(id=contact_pk).delete()
+    return redirect('profile')
