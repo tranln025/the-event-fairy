@@ -95,10 +95,17 @@ def contacts_list(request):
 def contact_add(request):
     if request.method == 'POST':
         username = request.POST['user2']
-        if User.objects.filter(username=username).exists():
-            new_contact = User.objects.get(username__iexact=username)
-            contact = Contact.objects.create(user1 = request.user, user2 = new_contact)
-            return redirect('contacts_list')
+        if User.objects.filter(username__iexact=username).exists():
+            found_user = User.objects.get(username__iexact=username)
+            if Contact.objects.filter(user1_id=request.user, user2_id=found_user):
+                context = {'error': f"You have already added {found_user.username} as a contact."}
+                return render(request, 'contact_form.html', context)
+            elif found_user == request.user:
+                context = {'error': 'You cannot add yourself as a contact.'}
+                return render(request, 'contact_form.html', context)
+            else:
+                new_contact = Contact.objects.create(user1=request.user, user2=found_user)
+                return redirect('contacts_list')
         else:
             context = {'error': 'Username does not exist. Please try again.'}
             print(context)
