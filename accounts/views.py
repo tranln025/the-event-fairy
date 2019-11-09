@@ -75,13 +75,15 @@ def profile(request):
     if request.method == 'POST':
         form = ProfPicForm(request.POST)
         if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
+            profile = Profile.objects.create(user_id = user.id, image_link = request.POST['image_link'])
             return redirect('profile')
     else:
         form = ProfPicForm()
-    context = {'user': user, 'username': username, 'form': form, 'created_events': created_events, 'contacts': contacts, 'invited_events': invited_events}
+        context = {'user': user, 'username': username, 'form': form, 'created_events': created_events, 'contacts': contacts, 'invited_events': invited_events}
+        if Profile.objects.filter(user_id=user.id).exists():
+            profile = Profile.objects.get(user_id=user.id)
+            prof_pic_link = profile.image_link    
+            context['prof_pic_link'] = prof_pic_link
     return render(request, 'profile.html', context)
 
 def contacts_list(request):
