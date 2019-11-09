@@ -1,0 +1,1 @@
+console.log('invite.js is linked')

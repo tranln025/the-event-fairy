@@ -8,37 +8,21 @@ from .models import Profile, Event, Invitation, Contact, Comment
 
 # Create your views here.
 
+########## Base Pages ##########
 
 def test(request):
   return HttpResponse("Goodbye rocket ship. Hello Home.")
 
-
-
-
-
-
-
 def landing(request):
     return render(request, 'landing.html')
-
-
-
-
 
 def about(request):
     return render(request, 'about.html')
 
-
-
-
-
 def home(request):
     return render(request, 'home.html')
 
-
-
 ########## Show Events ##########
-
 
 def public_list(request):
     events = Event.objects.filter(type='Public')
@@ -51,15 +35,10 @@ def private_list(request):
     context = {'events': events, 'type': 'Private'}
     return render(request, 'event_list.html', context)
 
-
-
 def event_detail(request,event_pk):
     event = Event.objects.get(id=event_pk)
     context = {"event":event}
     return render(request, 'event_detail.html', context)
-
-
-
 
 ########## Editing Events ##########
 
@@ -77,9 +56,6 @@ def event_create(request):
         form = EventForm()
     context = {'form':form, 'header': "Add New Event"}
     return render(request, 'event_form.html', context)
-   
-
-
 
 @login_required
 def event_edit(request, event_pk):
@@ -94,8 +70,6 @@ def event_edit(request, event_pk):
     context = {'form':form, 'header':f"Edit {event.title}"}
     return render(request, 'event_form.html', context)
 
-
-
 @login_required
 def event_delete(request, event_pk):
     event = Event.objects.get(id=event_pk)
@@ -105,10 +79,14 @@ def event_delete(request, event_pk):
     elif event.type == 'Private':
         return redirect('private_list')
 
+########## Event Invitation ##########
 
-
-def contact_create(request):
-    return render(request, '', context)
-
-def invite_contact(request):
-    return render(request, 'invite_form.html')
+def event_invite(request, event_pk):
+    event = Event.objects.get(id=event_pk)
+    if request.method == 'POST':
+        search_input = request.POST['contact_search']
+        search_results = User.objects.filter(username_istartswith=search_input)
+        context = {'search_results': search_results}
+        return render(request, 'invite_form.html', context)
+    else:
+        return render(request, 'invite_form.html')

@@ -8,7 +8,7 @@ from project_2_app.forms import ProfPicForm
 
 # Create your views here.
 
-
+########## Auth ##########
 
 def register(request):
     if request.method == "POST":
@@ -42,7 +42,6 @@ def register(request):
     else:
         return render(request, 'register.html')
 
-
 def login(request):
     if request.method == "POST":
         username_form = request.POST['username']
@@ -58,14 +57,12 @@ def login(request):
     else:
         return render(request, 'login.html')
 
-
-
 def logout(request):
     auth.logout(request)
     return redirect('home')
+
+########## Profile Contents ##########
         
-
-
 def profile(request):
     user = request.user
     username = user.username

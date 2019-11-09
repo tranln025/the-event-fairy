@@ -1,15 +1,13 @@
 from django import forms
-from . models import Event, Contact, Profile
+from django.forms.widgets import DateTimeInput
+
+from . models import Event, Profile
 
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ('title', 'datetime', 'location', 'address', 'city', 'state', 'image_link', 'type', 'category')
-
-# class ContactForm(forms.ModelForm):
-#     class Meta:
-#         model = Contact
-#         fields = ('user2',)
+        fields = ('title', 'date_and_time', 'location', 'address', 'city', 'state', 'image_link', 'type', 'category')
+        widgets = {'date_and_time': DateTimeInput(attrs={'type': 'datetime-local'}),}
 
 class ProfPicForm(forms.ModelForm):
     class Meta:
