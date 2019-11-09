@@ -10,5 +10,6 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('profile/', views.profile, name='profile'),
     path('profile/contacts/', views.contacts_list, name='contacts_list'),
-    path('profile/contacts/new/', views.contact_add, name='contact_add')
+    path('profile/contacts/new/', views.contact_add, name='contact_add'),
+    path('profile/contacts/<int:contact_pk>/delete/', views.contact_delete, name='contact_delete')
 ]

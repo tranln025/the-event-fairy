@@ -6,7 +6,6 @@ state_abbrs = {
     'AK': 'Alaska',
     'AL': 'Alabama',
     'AR': 'Arkansas',
-    'AS': 'American Samoa',
     'AZ': 'Arizona',
     'CA': 'California',
     'CO': 'Colorado',
@@ -15,7 +14,6 @@ state_abbrs = {
     'DE': 'Delaware',
     'FL': 'Florida',
     'GA': 'Georgia',
-    'GU': 'Guam',
     'HI': 'Hawaii',
     'IA': 'Iowa',
     'ID': 'Idaho',
@@ -30,7 +28,6 @@ state_abbrs = {
     'MI': 'Michigan',
     'MN': 'Minnesota',
     'MO': 'Missouri',
-    'MP': 'Northern Mariana Islands',
     'MS': 'Mississippi',
     'MT': 'Montana',
     'NA': 'National',
@@ -46,7 +43,6 @@ state_abbrs = {
     'OK': 'Oklahoma',
     'OR': 'Oregon',
     'PA': 'Pennsylvania',
-    'PR': 'Puerto Rico',
     'RI': 'Rhode Island',
     'SC': 'South Carolina',
     'SD': 'South Dakota',
@@ -54,7 +50,6 @@ state_abbrs = {
     'TX': 'Texas',
     'UT': 'Utah',
     'VA': 'Virginia',
-    'VI': 'Virgin Islands',
     'VT': 'Vermont',
     'WA': 'Washington',
     'WI': 'Wisconsin',
@@ -64,7 +59,7 @@ state_abbrs = {
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     image_link = models.TextField()
     # image_upload = models.ImageField(upload_to='prof_images/')
 
