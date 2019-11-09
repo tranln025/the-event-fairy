@@ -70,7 +70,7 @@ class Profile(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(default="No description provided")
-    date_and_time = models.DateTimeField(default=datetime.now)
+    date_and_time = models.DateTimeField()
     location = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
