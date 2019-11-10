@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
-    <h1>Invite friends to your event!</h1>
+    <h1>Invite friends to {{ event.title }}</h1>
     <section class="form-section">
-        <form class="invite-form" method="post">
+        <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}">
             {% csrf_token %}
-                <input type="checkbox" name="{{ user.username }}" value="{{ user.username }}" id="{{ user.username }}">
-            {% for user in search_results %}
-            {% endfor %}
+            {% if contacts %}
+                {% for contact in contacts %}
+                    <input type="checkbox" name="contact" value="{{ contact }}" class="invite-contact">{{ contact }}
+                {% endfor %}
+                    <button type="submit">Invite</button>
+            {% else %}
+                <p>Add a contact to invite them to your event!</p>
+            {% endif %}
         </form>
     </section>
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Invite JS -->
+    <script src="{% static 'scripts/invite.js' %}"></script>
+
 {% endblock %}
-<!-- JS -->
-<script src="./../static/scripts/invite.js"></script>

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers 
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import EventForm
 from .models import Profile, Event, Invitation, Contact, Comment
@@ -65,6 +67,10 @@ def event_create(request):
 def event_edit(request, event_pk):
     event = Event.objects.get(id=event_pk)
     if request.method == 'POST':
+        mutable = request.POST._mutable
+        request.POST._mutable = True
+        request.POST['date_and_time'] = request.POST['date_and_time'].replace('T', ' ')
+        request.POST._mutable = mutable
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             event=form.save()
@@ -85,12 +91,19 @@ def event_delete(request, event_pk):
 
 ########## Event Invitation ##########
 
+@csrf_exempt
 def event_invite(request, event_pk):
     event = Event.objects.get(id=event_pk)
+    contacts = Contact.objects.filter(user1=request.user)
+    print('contacts >>>>>>> ', contacts) # <QuerySet [<Contact: daniel>, <Contact: karra>]>
+    context = {'event': event, 'contacts': contacts}
     if request.method == 'POST':
-        search_input = request.POST['contact_search']
-        search_results = User.objects.filter(username_istartswith=search_input)
-        context = {'search_results': search_results}
-        return render(request, 'invite_form.html', context)
+        print("request.post >>>> ", request.POST) # <QueryDict: {'checkedContacts[]': ['karra']}>
+        checkedContacts_set = request.POST.getlist('checkedContacts[]') 
+        print("checkedContacts_set >>>>> ", checkedContacts_set) # ['daniel', 'karra']
+        for username in checkedContacts_set:
+            guest = User.objects.get(username=username)
+            invitation = Invitation.objects.create(event=event, guest=guest)
+        return redirect('event_detail', event_pk=event.pk)
     else:
-        return render(request, 'invite_form.html')
+        return render(request, 'invite_form.html', context)
