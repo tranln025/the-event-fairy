@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
-{% block content }
-    <h1>Invite Someone</h1>
-{% endblock }
+{% block content %}
+    <h1>Invite friends to your event!</h1>
+    <section class="form-section">
+        <form class="invite-form" method="post">
+            {% csrf_token %}
+                <input type="checkbox" name="{{ user.username }}" value="{{ user.username }}" id="{{ user.username }}">
+            {% for user in search_results %}
+            {% endfor %}
+        </form>
+    </section>
+
+{% endblock %}
+<!-- JS -->
+<script src="./../static/scripts/invite.js"></script>
