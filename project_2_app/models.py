@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here.
 state_abbrs = {
@@ -69,7 +70,7 @@ class Profile(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(default="No description provided")
-    datetime = models.CharField(max_length=100)
+    date_and_time = models.DateTimeField()
     location = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
