@@ -1,7 +1,20 @@
 nav{
     width:100%;
+    background-color: #203E10;
 }
 
+header {
+    font-family: 'Pacifico', cursive;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+}
+
+body {
+    background-color: #516C2C;
+    font-family: 'Pacifico', cursive;
+}
 
 
 .list-container{
@@ -15,6 +28,12 @@ nav{
     display: flex;
     flex-direction: column;
 
+}
+
+.blockquote {
+    text-decoration-color: #421813;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
 }
 
 
