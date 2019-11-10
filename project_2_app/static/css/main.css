@@ -3,8 +3,17 @@ nav{
     background-color: #203E10;
 }
 
+header {
+    font-family: 'Pacifico', cursive;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+}
+
 body {
     background-color: #516C2C;
+    font-family: 'Pacifico', cursive;
 }
 
 
@@ -24,6 +33,7 @@ body {
 .blockquote {
     text-decoration-color: #421813;
     text-align: center;
+    font-family: 'Pacifico', cursive;
 }
 
 
