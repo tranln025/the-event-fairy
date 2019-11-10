@@ -45,13 +45,17 @@ def event_detail(request,event_pk):
 @login_required
 def event_create(request):
     if request.method == 'POST':
-        print(request.user)
+        mutable = request.POST._mutable
+        request.POST._mutable = True
+        request.POST['date_and_time'] = request.POST['date_and_time'].replace('T', ' ')
+        request.POST._mutable = mutable
         form = EventForm(request.POST)
+        print(form.is_valid(), request.POST)
         if form.is_valid():
             event = form.save(commit=False)
             event.creator = request.user
             event.save()
-        return redirect('event_detail', event_pk=event.pk)
+            return redirect('event_detail', event_pk=event.pk)
     else:
         form = EventForm()
     context = {'form':form, 'header': "Add New Event"}
