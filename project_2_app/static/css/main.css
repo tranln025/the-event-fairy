@@ -79,3 +79,30 @@ img {
     height: 100%;
     padding-top: 50px;
 }
+
+
+.home-nav{
+    display:flex;
+    flex-direction: row;
+}
+
+.home-nav-item{
+    width:50%;
+    border:1px solid lightgray;
+    margin:5px;
+}
+.home-nav-item a {
+    text-align: center;
+}
+
+.home-nav-item p {
+    margin:3px;
+}
+
+
+/*------------------ About --------------------*/
+.about-img{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+}
