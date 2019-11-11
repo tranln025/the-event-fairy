@@ -21,7 +21,7 @@
         <ul class="list-group">
             {% for contact in contacts %}
                 <li class="list-group-item">{{ contact }}
-                    <a href="{% url 'contact_delete' contact_pk=contact.pk %}">Delete</a>
+                    <a href="{% url 'contact_delete' contact_pk=contact.pk %}">Remove</a>
                 </li>
             {% endfor %}
         </ul>

@@ -102,10 +102,9 @@ def contact_add(request):
                 return render(request, 'contact_form.html', context)
             else:
                 new_contact = Contact.objects.create(user1=request.user, user2=found_user)
-                return redirect('contacts_list')
+                return redirect('profile')
         else:
             context = {'error': 'Username does not exist. Please try again.'}
-            print(context)
             return render(request, 'contact_form.html', context)
     else:
         return render(request, 'contact_form.html')
