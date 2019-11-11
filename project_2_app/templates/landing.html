@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
@@ -11,7 +12,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo culpa beatae sed dolorem perferendis praesentium reprehenderit odio non vero minus sunt, itaque, aliquam natus at nihil necessitatibus provident. Incidunt ea odio nemo consequuntur omnis! Ullam nostrum in nobis repellat modi, sed praesentium maxime exercitationem delectus, illum harum quos! Molestias nulla, explicabo magni distinctio voluptate dolorum maxime assumenda cupiditate reprehenderit, consequuntur veritatis id atque sequi! Fuga nihil accusantium quod corporis eveniet molestias unde deleniti voluptatum eum quibusdam distinctio vitae quaerat totam harum voluptatem veritatis eos fugit, temporibus eius natus.</p>
             </div>
             <div class="col-md">
-                <img src="https://images.unsplash.com/photo-1559951407-5195d454e11b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" alt="mushroom">
+                <img src="{% static 'images/the-event-fairy.png' %}" alt="mushroom">
             </div>
         </div>
     </div>
