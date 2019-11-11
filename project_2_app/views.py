@@ -28,13 +28,13 @@ def home(request):
 
 def public_list(request):
     events = Event.objects.filter(type='Public')
-    context = {'events': events, 'type': 'Public'}
+    context = {'events': events, 'header': 'Public Events'}
     return render(request, 'event_list.html', context)
 
 @login_required
 def private_list(request):
-    events = Event.objects.filter(type='Private')
-    context = {'events': events, 'type': 'Private'}
+    events = [invitation.event for invitation in Invitation.objects.filter(guest_id=request.user.id)]
+    context = {'events': events, 'header': "Events You're Invited To"}
     return render(request, 'event_list.html', context)
 
 def event_detail(request,event_pk):

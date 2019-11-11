@@ -94,7 +94,7 @@ class Invitation(models.Model):
         unique_together = ["event", "guest"]
 
     def __str__(self):
-        return f"{self.guest.username}"
+        return f"{self.event.title} - {self.guest.username}"
 
 class Contact(models.Model):
     user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user1_contacts')
