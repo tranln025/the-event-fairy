@@ -23,6 +23,3 @@ $(`.confirmation`).on('click', () => {
         error: err => console.log("err >>>>", err)
     });
 });
-
-// when button is clicked, send post request
-// if invitation confirmation = true, do not show button on page
