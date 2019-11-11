@@ -59,7 +59,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('home')
+    return redirect('landing')
 
 ########## Profile Contents ##########
         
@@ -82,6 +82,28 @@ def profile(request):
             prof_pic_link = profile.image_link    
             context['prof_pic_link'] = prof_pic_link
     return render(request, 'profile.html', context)
+
+def prof_pic_edit(request):
+    user = request.user
+    username = user.username
+    profile = Profile.objects.get(user_id=user.id)
+    prof_pic_link = profile.image_link    
+    created_events = user.events.all()
+    invited_events = Invitation.objects.filter(guest=user)
+    contacts = Contact.objects.filter(user1=user)
+    if request.method == 'POST':
+        form = ProfPicForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save()
+            return redirect('profile')
+    else:
+        profile.image_link = ''
+        profile.save()
+        form = ProfPicForm()
+    context = {'user': user, 'username': username, 'form': form, 'created_events': created_events, 'contacts': contacts, 'invited_events': invited_events, 'prof_pic_link': prof_pic_link}
+    return render(request, 'profile.html', context)
+
+########## Contacts ##########
 
 def contacts_list(request):
     contacts = Contact.objects.filter(user1=request.user)

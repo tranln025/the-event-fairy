@@ -4,9 +4,12 @@
     <h1>Welcome, {{ username }}</h1>
 
     {% if prof_pic_link %}
-        <img src="{{ prof_pic_link }}" alt="profile picture">
+        <section class="prof-pic-section">
+            <img src="{{ prof_pic_link }}" alt="profile picture">
+            <a href="{% url 'prof_pic_edit' %}"><button class="edit-prof-pic">Change</button></a>
+        </section>
     {% else %}
-        <section class="form-section">
+        <section class="prof-pic-section" data-prof-edit="{% url 'prof_pic_edit' %}">
             <p>Upload a profile picture</p>
             <form method="post" class="profile-pic-form">
                 {% csrf_token %}
@@ -63,4 +66,5 @@
         {% else %}
             <p>You have no invites.</p>
         {% endif %}
+
 {% endblock %}

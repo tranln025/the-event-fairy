@@ -4,27 +4,25 @@
 
     <h1>{{ type }} Events</h1>
 
-    <div class='list-container'>
-        <div class='side-nav'>
-            <a href="{% url 'public_list' %}"><button>Browse Public Events</button></a>
-            <a href="{% url 'private_list' %}"><button>Browse Private Events</button></a>
-            <a href="{% url 'event_create' %}"><button>Create an Event</button></a>
-        </div>
-
-        {% for event in events %}
-            <div class="list-group">
-                <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ event.title }}</h5>
-                        <small>Click to view details</small>
-                    </div>
-                    <p class="mb-1">{{ event.date_and_time }}</p>
-                    <p class="mb-1">{{ event.location }}</p>
-                    <small>Hosted by {{ event.creator }}</small>
-                </a>
-            </div>
-        {% endfor %}
+    <div class="list-group events-nav">
+        <a href="{% url 'public_list' %}" class="list-group-item list-group-item-action">Browse Public Events</a>
+        <a href="{% url 'private_list' %}" class="list-group-item list-group-item-action">View Events You're Invited To</a>
+        <a href="{% url 'event_create' %}" class="list-group-item list-group-item-action">Create an Event</a>
     </div>
+                    
+    {% for event in events %}
+        <div class="list-group">
+            <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ event.title }}</h5>
+                    <small>Click to view details</small>
+                </div>
+                <p class="mb-1">{{ event.date_and_time }}</p>
+                <p class="mb-1">{{ event.location }}</p>
+                <small>Hosted by {{ event.creator }}</small>
+            </a>
+        </div>
+    {% endfor %}
     
 
 {% endblock %}
