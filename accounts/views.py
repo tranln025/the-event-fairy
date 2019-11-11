@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-from project_2_app.models import Profile, Contact, Invitation
+from project_2_app.models import Profile, Contact, Invitation, Event
 from project_2_app.forms import ProfPicForm
 
 # Create your views here.
@@ -69,7 +69,10 @@ def profile(request):
     user = request.user
     username = user.username
     created_events = user.events.all()
-    going_events = Invitation.objects.filter(guest=user, confirmation=True)
+    confirmed_invitations = Invitation.objects.filter(guest=request.user, confirmation=True)
+    for invitation in confirmed_invitations:
+        event_id = invitation.event_id
+        going_events = Event.objects.filter(id=event_id)
     contacts = Contact.objects.filter(user1=user)
     if request.method == 'POST':
         form = ProfPicForm(request.POST)

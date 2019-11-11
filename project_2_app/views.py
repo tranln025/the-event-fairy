@@ -42,15 +42,18 @@ def event_detail(request, event_pk):
     event = Event.objects.get(id=event_pk)
     guests = [invitation.guest for invitation in Invitation.objects.filter(event_id=event_pk)]
     guestlist = ", ".join([invitation.guest.username for invitation in Invitation.objects.filter(event_id=event_pk)])
-    invitation = Invitation.objects.get(event=event, guest=request.user)
     attending_list = ", ".join([invitation.guest.username for invitation in Invitation.objects.filter(event_id=event_pk, confirmation=True)])
+    context = {'event': event, 'guestlist': guestlist, 'guests': guests, 'attending_list': attending_list}
+    if Invitation.objects.filter(event=event, guest=request.user).exists():
+        invitation = Invitation.objects.get(event=event, guest=request.user)
+        context['invitation'] = invitation
     if request.method == 'POST':
         confirmation = request.POST.get('confirmation')
+        invitation = Invitation.objects.get(event=event, guest=request.user)
         invitation.confirmation = True
         invitation.save()
         return redirect('event_detail', event_pk=event.pk)
     else:
-        context = {'event': event, 'guestlist': guestlist, 'guests': guests, 'invitation': invitation, 'attending_list': attending_list}
         return render(request, 'event_detail.html', context)
 
 ########## Editing Events ##########
