@@ -9,7 +9,17 @@ $(`.invite-form`).on('submit', (event) => {
         method: 'POST',
         url: $(`.invite-form`).attr('data-invite-url'),
         data: {'checkedContacts': checkedContacts},
-        success: console.log("success"),
+        success: console.log("Success"),
         error: err => console.log(err)
+    });
+});
+
+$(`.confirmation`).on('click', () => {
+    $.ajax({
+        method: 'POST',
+        url: $(`.confirmation`).attr('data-event-detail-url'),
+        data: {'confirmation': true},
+        success: console.log("Success"),
+        error: err => console.log("err >>>>", err)
     });
 });

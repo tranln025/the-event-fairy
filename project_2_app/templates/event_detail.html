@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
@@ -18,8 +19,8 @@
         <h6>Date Created: {{event.date_created}}</h6>
         {% if event.type == 'Private' %}
         <h6>Guests Invited: {{ guestlist }}</h6>
+        <h6>Guests Attending: {{ attending_list }}</h6>
         {% endif %}
-        <button class="attendance-confirmation">Going</button>
     </section>
 
     {% else %}
@@ -35,4 +36,13 @@
         {% endif %}
     </section>
     {% endif %}
+    {% if event.creator != user and event.type == 'Private' and invitation.confirmation == False %}
+        <button class="confirmation" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">Going</button>
+    {% endif %}
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Invite JS -->
+    <script src="{% static 'scripts/app.js' %}"></script>
+    
 {% endblock %}
