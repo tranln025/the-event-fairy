@@ -69,7 +69,7 @@ def profile(request):
     user = request.user
     username = user.username
     created_events = user.events.all()
-    invited_events = Invitation.objects.filter(guest=user)
+    going_events = Invitation.objects.filter(guest=user, confirmation=True)
     contacts = Contact.objects.filter(user1=user)
     if request.method == 'POST':
         form = ProfPicForm(request.POST)
@@ -78,7 +78,7 @@ def profile(request):
             return redirect('profile')
     else:
         form = ProfPicForm()
-        context = {'user': user, 'username': username, 'form': form, 'created_events': created_events, 'contacts': contacts, 'invited_events': invited_events}
+        context = {'user': user, 'username': username, 'form': form, 'created_events': created_events, 'contacts': contacts, 'going_events': going_events}
         if Profile.objects.filter(user_id=user.id).exists():
             profile = Profile.objects.get(user_id=user.id)
             prof_pic_link = profile.image_link    

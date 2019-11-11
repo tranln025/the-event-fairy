@@ -45,12 +45,12 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p>You have not created any events.</p>
+            <p>You have not created any events. <a href="{% url 'event_create' %}">Create one now!</a></p> 
         {% endif %}
 
-    <h2>Events You're Invited To</h2>
-        {% if invited_events %}
-            {% for event in invited_events %}
+    <h2>Events You're Attending</h2>
+        {% if going_events %}
+            {% for event in going_events %}
             <div class="list-group">
                 <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
@@ -64,7 +64,7 @@
             </div>
             {% endfor %}
         {% else %}
-            <p>You have no invites.</p>
+            <p>You have not confirmed your attendance for any events. View <a href="{% url 'private_list' %}">Events You're Invited To</a> and click Going to let the host know!</p>
         {% endif %}
 
 {% endblock %}

@@ -37,12 +37,21 @@ def private_list(request):
     context = {'events': events, 'header': "Events You're Invited To"}
     return render(request, 'event_list.html', context)
 
+@csrf_exempt
 def event_detail(request, event_pk):
     event = Event.objects.get(id=event_pk)
     guests = [invitation.guest for invitation in Invitation.objects.filter(event_id=event_pk)]
     guestlist = ", ".join([invitation.guest.username for invitation in Invitation.objects.filter(event_id=event_pk)])
-    context = {'event': event, 'guestlist': guestlist, 'guests': guests}
-    return render(request, 'event_detail.html', context)
+    invitation = Invitation.objects.get(event=event, guest=request.user)
+    attending_list = ", ".join([invitation.guest.username for invitation in Invitation.objects.filter(event_id=event_pk, confirmation=True)])
+    if request.method == 'POST':
+        confirmation = request.POST.get('confirmation')
+        invitation.confirmation = True
+        invitation.save()
+        return redirect('event_detail', event_pk=event.pk)
+    else:
+        context = {'event': event, 'guestlist': guestlist, 'guests': guests, 'invitation': invitation, 'attending_list': attending_list}
+        return render(request, 'event_detail.html', context)
 
 ########## Editing Events ##########
 
@@ -61,12 +70,13 @@ def event_create(request):
             return redirect('event_detail', event_pk=event.pk)
     else:
         form = EventForm()
-    context = {'form':form, 'header': "Add New Event"}
+    context = {'form': form, 'header': "Add New Event"}
     return render(request, 'event_form.html', context)
 
 @login_required
 def event_edit(request, event_pk):
     event = Event.objects.get(id=event_pk)
+    user = request.user
     if request.method == 'POST':
         mutable = request.POST._mutable
         request.POST._mutable = True
@@ -74,11 +84,11 @@ def event_edit(request, event_pk):
         request.POST._mutable = mutable
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
-            event=form.save()
+            event = form.save()
             return redirect('event_detail', event_pk=event.pk)
     else:
         form = EventForm(instance=event)
-    context = {'form':form, 'header':f"Edit {event.title}", "event": event}
+    context = {'form': form, 'header': f"Edit {event.title}", "event": event, 'user': user}
     return render(request, 'event_form.html', context)
 
 @login_required
