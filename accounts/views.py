@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 from project_2_app.models import Profile, Contact, Invitation
@@ -63,6 +64,7 @@ def logout(request):
 
 ########## Profile Contents ##########
         
+@login_required
 def profile(request):
     user = request.user
     username = user.username
@@ -83,6 +85,7 @@ def profile(request):
             context['prof_pic_link'] = prof_pic_link
     return render(request, 'profile.html', context)
 
+@login_required
 def prof_pic_edit(request):
     user = request.user
     username = user.username
@@ -105,11 +108,13 @@ def prof_pic_edit(request):
 
 ########## Contacts ##########
 
+@login_required
 def contacts_list(request):
     contacts = Contact.objects.filter(user1=request.user)
     context = {'contacts': contacts}
     return render(request, 'contacts_list.html', context)
 
+@login_required
 @csrf_exempt
 def contact_add(request):
     if request.method == 'POST':
@@ -131,6 +136,7 @@ def contact_add(request):
     else:
         return render(request, 'contact_form.html')
 
+@login_required
 def contact_delete(request, contact_pk):
     Contact.objects.get(id=contact_pk).delete()
     return redirect('profile')

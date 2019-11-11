@@ -21,11 +21,13 @@
     <button class="attendance-confirmation">Going</button>
 </section>
 
-<section class="event-btns">
-    <a href="{% url 'event_edit' event_pk=event.pk %}"><button type="submit" class="event-edit">Edit</button></a>
-    <a href="{% url 'event_delete' event_pk=event.pk %}"><button type="submit" class="event-delete">Delete</button></a>
-    {% if event.type == 'Private' %}
-        <a href="{% url 'event_invite' event_pk=event.pk %}"><button type="submit" class="event-invite">Invite People</button></a>
+    {% if event.creator == user %}
+    <section class="event-btns">
+        <a href="{% url 'event_edit' event_pk=event.pk %}"><button type="submit" class="event-edit">Edit</button></a>
+        <a href="{% url 'event_delete' event_pk=event.pk %}"><button type="submit" class="event-delete">Delete</button></a>
+        {% if event.type == 'Private' %}
+            <a href="{% url 'event_invite' event_pk=event.pk %}"><button type="submit" class="event-invite">Invite People</button></a>
+        {% endif %}
+    </section>
     {% endif %}
-</section>
 {% endblock %}

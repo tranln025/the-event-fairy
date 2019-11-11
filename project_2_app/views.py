@@ -91,6 +91,7 @@ def event_delete(request, event_pk):
 
 ########## Event Invitation ##########
 
+@login_required
 @csrf_exempt
 def event_invite(request, event_pk):
     event = Event.objects.get(id=event_pk)
