@@ -68,12 +68,8 @@ def logout(request):
 def profile(request):
     user = request.user
     username = user.username
-    created_events = user.events.all()
-    confirmed_invitations = Invitation.objects.filter(guest=request.user, confirmation=True)
-    for invitation in confirmed_invitations:
-        event_id = invitation.event_id
-        going_events = Event.objects.filter(id=event_id)
     contacts = Contact.objects.filter(user1=user)
+    created_events = user.events.all()
     if request.method == 'POST':
         form = ProfPicForm(request.POST)
         if form.is_valid():
@@ -81,11 +77,17 @@ def profile(request):
             return redirect('profile')
     else:
         form = ProfPicForm()
-        context = {'user': user, 'username': username, 'form': form, 'created_events': created_events, 'contacts': contacts, 'going_events': going_events}
+        context = {'user': user, 'username': username, 'form': form, 'created_events': created_events, 'contacts': contacts}
         if Profile.objects.filter(user_id=user.id).exists():
             profile = Profile.objects.get(user_id=user.id)
             prof_pic_link = profile.image_link    
             context['prof_pic_link'] = prof_pic_link
+        if Invitation.objects.filter(guest=request.user, confirmation=True).exists():
+            confirmed_invitations = Invitation.objects.filter(guest=request.user, confirmation=True)
+            for invitation in confirmed_invitations:
+                event_id = invitation.event_id
+                going_events = Event.objects.filter(id=event_id)
+                context['going_events'] = going_events
     return render(request, 'profile.html', context)
 
 @login_required
