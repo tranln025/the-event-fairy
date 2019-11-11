@@ -39,7 +39,10 @@ def private_list(request):
 
 def event_detail(request,event_pk):
     event = Event.objects.get(id=event_pk)
-    context = {"event":event}
+    print("event>>>> ", event)
+    guests = ", ".join([invitation.guest.username for invitation in Invitation.objects.filter(event_id=event_pk)])
+    print("guests>>>>> ", guests) # <QuerySet [<Invitation: daniel>, <Invitation: karra>]>
+    context = {'event': event, 'guests': guests}
     return render(request, 'event_detail.html', context)
 
 ########## Editing Events ##########
@@ -52,7 +55,6 @@ def event_create(request):
         request.POST['date_and_time'] = request.POST['date_and_time'].replace('T', ' ')
         request.POST._mutable = mutable
         form = EventForm(request.POST)
-        print(form.is_valid(), request.POST)
         if form.is_valid():
             event = form.save(commit=False)
             event.creator = request.user
@@ -95,12 +97,9 @@ def event_delete(request, event_pk):
 def event_invite(request, event_pk):
     event = Event.objects.get(id=event_pk)
     contacts = Contact.objects.filter(user1=request.user)
-    print('contacts >>>>>>> ', contacts) # <QuerySet [<Contact: daniel>, <Contact: karra>]>
     context = {'event': event, 'contacts': contacts}
     if request.method == 'POST':
-        print("request.post >>>> ", request.POST) # <QueryDict: {'checkedContacts[]': ['karra']}>
         checkedContacts_set = request.POST.getlist('checkedContacts[]') 
-        print("checkedContacts_set >>>>> ", checkedContacts_set) # ['daniel', 'karra']
         for username in checkedContacts_set:
             guest = User.objects.get(username=username)
             invitation = Invitation.objects.create(event=event, guest=guest)

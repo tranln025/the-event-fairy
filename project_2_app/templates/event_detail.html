@@ -2,9 +2,8 @@
 
 {% block content %}
 
-<h1>{{event.title}}</h1>
-
 <section class="event-details">
+    <h1>{{event.title}}</h1>
     <img src="{{ event.image_link }}" alt="Image for {{ event.title }}">
     <h4>{{event.description}}</h4>
     <h4>{{event.date_and_time}}</h4>
@@ -12,10 +11,13 @@
     <h5>{{event.address}}</h5>
     <h5>{{event.city}}</h5>
     <h5>{{event.state}}</h5>
-    <h6>{{event.creator}}</h6>
-    <h6>{{event.type}}</h6>
-    <h6>{{event.category}}</h6>
+    <h6>Creator: {{event.creator}}</h6>
+    <h6>Type: {{event.type}}</h6>
+    <h6>Category: {{event.category}}</h6>
     <h6>Date Created: {{event.date_created}}</h6>
+    {% if event.type == 'Private' %}
+    <h6>Guests Invited: {{ guests }}</h6>
+    {% endif %}
 </section>
 
 <section class="event-btns">
