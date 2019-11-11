@@ -2,29 +2,37 @@
 
 {% block content %}
 
-<section class="event-details">
-    <h1>{{event.title}}</h1>
-    <img src="{{ event.image_link }}" alt="Image for {{ event.title }}">
-    <h4>{{event.description}}</h4>
-    <h4>{{event.date_and_time}}</h4>
-    <h4>{{event.location}}</h4>
-    <h5>{{event.address}}</h5>
-    <h5>{{event.city}}</h5>
-    <h5>{{event.state}}</h5>
-    <h6>Creator: {{event.creator}}</h6>
-    <h6>Type: {{event.type}}</h6>
-    <h6>Category: {{event.category}}</h6>
-    <h6>Date Created: {{event.date_created}}</h6>
-    {% if event.type == 'Private' %}
-    <h6>Guests Invited: {{ guests }}</h6>
-    {% endif %}
-</section>
+    <section class="event-details">
+        <h1>{{event.title}}</h1>
+    {% if user in guests or event.creator == user or event.type == 'Public' %}
+        <img src="{{ event.image_link }}" alt="Image for {{ event.title }}">
+        <h4>{{event.description}}</h4>
+        <h4>{{event.date_and_time}}</h4>
+        <h4>{{event.location}}</h4>
+        <h5>{{event.address}}</h5>
+        <h5>{{event.city}}</h5>
+        <h5>{{event.state}}</h5>
+        <h6>Creator: {{event.creator}}</h6>
+        <h6>Type: {{event.type}}</h6>
+        <h6>Category: {{event.category}}</h6>
+        <h6>Date Created: {{event.date_created}}</h6>
+        {% if event.type == 'Private' %}
+        <h6>Guests Invited: {{ guestlist }}</h6>
+        {% endif %}
+        <button class="attendance-confirmation">Going</button>
+    </section>
 
-<section class="event-btns">
-    <a href="{% url 'event_edit' event_pk=event.pk %}"><button type="submit" class="event-edit">Edit</button></a>
-    <a href="{% url 'event_delete' event_pk=event.pk %}"><button type="submit" class="event-delete">Delete</button></a>
-    {% if event.type == 'Private' %}
-        <a href="{% url 'event_invite' event_pk=event.pk %}"><button type="submit" class="event-invite">Invite People</button></a>
+    {% else %}
+    <h3>Error: You are not authorized to view details for this event.</h3>
     {% endif %}
-</section>
+
+    {% if event.creator == user %}
+    <section class="event-btns">
+        <a href="{% url 'event_edit' event_pk=event.pk %}"><button type="submit" class="event-edit">Edit</button></a>
+        <a href="{% url 'event_delete' event_pk=event.pk %}"><button type="submit" class="event-delete">Delete</button></a>
+        {% if event.type == 'Private' %}
+            <a href="{% url 'event_invite' event_pk=event.pk %}"><button type="submit" class="event-invite">Invite People</button></a>
+        {% endif %}
+    </section>
+    {% endif %}
 {% endblock %}
