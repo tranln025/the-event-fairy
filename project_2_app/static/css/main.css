@@ -1,46 +1,64 @@
-nav{
+/* ----------------- Base ----------------- */
+:root {
+    --forest-green: #203E10;
+    --olive-green: #516C2C;
+    --pale-green: #ECF1EA;
+    --crimson: #D61B28;
+    --tan: #D6BD8C;
+    --brown: #421813;
+    --text-primary: #152d08;
+    --text-sub: #777;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
     width:100%;
     background-color: #203E10;
 }
 
-header {
-    font-family: 'Pacifico', cursive;
-}
-
-h1 {
+.navbar-brand {
     font-family: 'Pacifico', cursive;
 }
 
 body {
-    background-color: #516C2C;
+    background-color: var(--pale-green);
+}
+
+main {
+    padding: 5%;
+}
+
+/* ----------------- Landing ----------------- */
+
+.landing-h1 {
+    color: var(--text-primary);
     font-family: 'Pacifico', cursive;
-}
-
-
-.list-container{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-
-.side-nav{
-    display: flex;
-    flex-direction: column;
-
+    text-align: center;
 }
 
 .app-description {
-    text-decoration-color: #421813;
+    color: var(--text-primary);
     text-align: center;
     font-family: 'Pacifico', cursive;
+    font-size: 20px;
 }
 
+img {
+    width: 100%;
+}
 
+.cta {
+    text-align: center;
+    margin-top: 50px;
+}
 
+/* ----------------- Events ----------------- */
 
-
-
-.list-group{
-    width:75%;
+.events-nav {
+    width: 300px;
 }

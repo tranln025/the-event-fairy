@@ -39,9 +39,7 @@ def private_list(request):
 
 def event_detail(request,event_pk):
     event = Event.objects.get(id=event_pk)
-    print("event>>>> ", event)
     guests = ", ".join([invitation.guest.username for invitation in Invitation.objects.filter(event_id=event_pk)])
-    print("guests>>>>> ", guests) # <QuerySet [<Invitation: daniel>, <Invitation: karra>]>
     context = {'event': event, 'guests': guests}
     return render(request, 'event_detail.html', context)
 
