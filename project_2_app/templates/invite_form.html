@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
+    {% if event.creator == user %}
     <h1>Invite friends to {{ event.title }}</h1>
     <section class="form-section">
         <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}">
@@ -16,6 +17,9 @@
             {% endif %}
         </form>
     </section>
+    {% else %}
+    <h3>Error: You can only invite friends to events you created.</h3>
+    {% endif %}
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

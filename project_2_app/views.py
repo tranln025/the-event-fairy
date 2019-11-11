@@ -37,10 +37,11 @@ def private_list(request):
     context = {'events': events, 'header': "Events You're Invited To"}
     return render(request, 'event_list.html', context)
 
-def event_detail(request,event_pk):
+def event_detail(request, event_pk):
     event = Event.objects.get(id=event_pk)
-    guests = ", ".join([invitation.guest.username for invitation in Invitation.objects.filter(event_id=event_pk)])
-    context = {'event': event, 'guests': guests}
+    guests = [invitation.guest for invitation in Invitation.objects.filter(event_id=event_pk)]
+    guestlist = ", ".join([invitation.guest.username for invitation in Invitation.objects.filter(event_id=event_pk)])
+    context = {'event': event, 'guestlist': guestlist, 'guests': guests}
     return render(request, 'event_detail.html', context)
 
 ########## Editing Events ##########
@@ -77,7 +78,7 @@ def event_edit(request, event_pk):
             return redirect('event_detail', event_pk=event.pk)
     else:
         form = EventForm(instance=event)
-    context = {'form':form, 'header':f"Edit {event.title}"}
+    context = {'form':form, 'header':f"Edit {event.title}", "event": event}
     return render(request, 'event_form.html', context)
 
 @login_required

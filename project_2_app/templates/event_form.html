@@ -2,13 +2,17 @@
 
 {% block content %}
 
-<section class="form-section">
-    <h1>{{header}}</h1>
-    <form method="POST" class="event-form">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
-    </form>
-</section>
+    {% if event.creator == user %}
+        <section class="form-section">
+            <h1>{{header}}</h1>
+            <form method="POST" class="event-form">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    {% else %}
+        <h3>Error: You can only edit events you created.</h3>
+    {% endif %}
 
 {% endblock %}
