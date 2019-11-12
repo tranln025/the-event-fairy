@@ -185,6 +185,11 @@ img {
     text-align: right;
 }
 
+.create-event {
+    text-align: right;
+    width: 30%;
+}
+
 .list-group {
     margin-top: 15px;
 }
