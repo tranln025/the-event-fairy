@@ -9,7 +9,7 @@ class EventForm(forms.ModelForm):
         fields = ('title', 'description', 'date_and_time', 'location', 'address', 'city', 'state', 'image_link', 'type', 'category')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control col-md-6', 'style': 'margin: 0 auto'}),
-            'description': forms.TextInput(attrs={'class': 'form-control col-md-6', 'style': 'margin: 0 auto'}),
+            'description': forms.Textarea(attrs={'class': 'form-control col-md-6', 'style': 'margin: 0 auto'}),
             'date_and_time': DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control col-md-6', 'style': 'margin: 0 auto'}),
             'location': forms.TextInput(attrs={'class': 'form-control col-md-6', 'style': 'margin: 0 auto'}),
             'address': forms.TextInput(attrs={'class': 'form-control col-md-6', 'style': 'margin: 0 auto'}),

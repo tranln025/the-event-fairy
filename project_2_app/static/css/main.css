@@ -1,4 +1,5 @@
 /* ----------------- Base ----------------- */
+
 :root {
     --forest-green: #203E10;
     --olive-green: #516C2C;
@@ -21,6 +22,11 @@ nav {
     background-color: #203E10;
 }
 
+#navbarSupportedContent {
+    flex-grow: 0;
+    margin-left: auto;
+}
+
 .navbar-brand {
     font-family: 'Pacifico', cursive;
 }
@@ -32,7 +38,7 @@ body {
 
 main {
     padding: 5%;
-    margin-top: 15px;
+    margin: 15px 0 50px 0;
 }
 
 h1 {
@@ -92,8 +98,6 @@ img {
     flex-direction: row;
 }
 
-
-
 .home-nav-item{
     width:50%;
     border:1px solid lightgray;
@@ -112,12 +116,7 @@ img {
 .home-create-btn {
     text-align: center;
     border: 5px;
-    /* border-color: var(--olive-green); */
     box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
-}
-
-.home-btn {
-    /* background-color: var(--olive-green); */
 }
 
 /*------------------ About --------------------*/
@@ -132,59 +131,6 @@ img {
     text-align: center;
 }
 
- /* Small devices (landscape phones, 576px and up) */
-/* @media (min-width: 576px) { 
-    .img-1 {
-        align-self: auto;
-    }
-    .p-1 {
-        text-align: center;
-    }
-    .img-2 {
-        align-self: auto;
-    }
-    .p-2 {
-        text-align: center;
-    }
-    .img-3 {
-        align-self: auto;
-    }
-    .p-3 {
-        text-align: center;
-    }
-
- } */
-
- /* Medium devices (tablets, 768px and up) */
-/* @media (min-width: 768px) {
-    .p-1 {
-        float: left;
-    }
-    .img-1 {
-        float: right;
-    }
-    .img-2 {
-        float: left;
-    }
-    .p-2 {
-        float: right;
-    }
-    .p-3 {
-        float: left;
-    }
-    .img-3 {
-        float: right;
-    } */
-/* } */
-@media screen and (max-width: 768px) {
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-    }
-    .wrapper div:first-child {
-      order: 1;
-    }
-  }
 /*------------------ Profile --------------------*/
 
 .btn-success {
@@ -283,18 +229,16 @@ img {
     main {
         margin-top: 50px;
     }
-}
 
-
-
-@media only screen and (max-width: 600px) {
     .home-nav {
-      flex-direction: column;
+        flex-direction: column;
     }
+
     .home-nav-item{
         width:100% !important;
     }
+
     main{
         height: 100%;
     }
-  }
+}
