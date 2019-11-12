@@ -122,12 +122,12 @@ img {
 .home-create-btn {
     text-align: center;
     border: 5px;
-    border-color: var(--olive-green);
+    /* border-color: var(--olive-green); */
     box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
 }
 
 .home-btn {
-    background-color: var(--olive-green);
+    /* background-color: var(--olive-green); */
 }
 
 /*------------------ About --------------------*/
