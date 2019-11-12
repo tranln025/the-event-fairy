@@ -3,20 +3,22 @@
 {% block content %}
     {% if event %}
         {% if event.creator == user %}
-            <section class="form-section event-create-form">
-                <h1 class="event-create-h1">{{header}}</h1>
-                <form method="POST" class="event-form">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Submit</button>
-                </form>
+            <section class="form-section container event-create-form">
+                <div class="card-body d-flex flex-column rounded">
+                    <h1 class="event-create-h1">{{header}}</h1>
+                        <form method="POST" class="event-form">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Submit</button>
+                        </form>
+                </div>
             </section>
         {% else %}
             <h3>Error: You can only edit events you've created.</h3>
         {% endif %}
 
     {% else %}
-        <section class="form-section event-create-form">
+        <section class="form-section container event-create-form">
             <h1 class="event-create-h1">{{header}}</h1>
             <form method="POST" class="event-form">
                 {% csrf_token %}
