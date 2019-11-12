@@ -241,7 +241,7 @@ img {
     margin: 0 auto;
 }
 
-/*-------------------Add Contact--------------*/
+/*------------------- dd Contact --------------*/
 
 .contact-form {
     color: var(--text-primary);
@@ -253,11 +253,32 @@ img {
     text-align: center;
 }
 
-/*--------------Event Create Form--------------*/
+/*-------------- Event Create Form --------------*/
 
 .event-create-form {
     color: var(--text-primary);
     text-align: center;
+}
+
+/*-------------- Invite Form --------------*/
+
+.invite-form {
+    max-width: 150px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.invite-form-section {
+    margin-top: 50px;
+}
+
+.input-group-prepend {
+    margin-right: 10px;
+}
+
+.input-group-text {
+    background-color: rgba(0,0,0,0);
+    border: none;
 }
 
 /*------------------ Responsiveness --------------------*/
