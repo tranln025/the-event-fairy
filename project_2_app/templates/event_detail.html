@@ -1,20 +1,61 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
-<h1>{{event.title}}</h1>
+    <section class="event-details">
+        <h1 class="animated bounceIn">Event Details</h1>
+    {% if user in guests or event.creator == user or event.type == 'Public' %}
 
-<img src="{{image_link}}" alt="{{image.title}}">
-<h4>{{event.datetime}}</h4>
-<h4>{{event.location}}</h4>
-<h5>{{event.address}}</h5>
-<h5>{{event.city}}</h5>
-<h5>{{event.state}}</h5>
-<h6>{{event.creator}}</h6>
-<h6>{{event.type}}</h6>
-<h6>{{event.category}}</h6>
-<h6>{{event.date_created}}</h6>
+        <div class="event-detail-card card mb-3" style="max-width: 992px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{ event.image_link }}" class="card-img-top" alt="Image for {{ event.title }}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{event.title}}</h5>
+                        <h6>{{event.date_and_time}} at {{event.location}}</h6>
+                        <p>{{event.address}}<br/>
+                            {{event.city}}<br/>
+                            {{event.state}}</p>
+                        <p class="card-text">{{event.description}}</p>
+                        <p>Creator: {{event.creator}}<br/>
+                            Category: {{event.category}}<br/>
+                            Type: {{event.type}}</p>
+                        <p class="card-text"><small class="text-muted">Date Created: {{event.date_created}}</small></p>
+                    </div>
+                </div>
+            </div>
+            {% if event.type == 'Private' %}
+                <div class="card-footer text-muted">
+                    <p>Guests Invited: {{ guestlist }}</p>
+                    <p>Guests Attending: {{ attending_list }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
 
+    {% else %}
+    <h3>Error: You are not authorized to view details for this event.</h3>
+    {% endif %}
 
+    {% if event.creator == user %}
+    <section class="event-btns">
+        <a href="{% url 'event_edit' event_pk=event.pk %}"><button type="submit" class="event-edit btn btn-success">Edit</button></a>
+        <a href="{% url 'event_delete' event_pk=event.pk %}"><button type="submit" class="event-delete btn btn-danger">Delete</button></a>
+        {% if event.type == 'Private' %}
+            <a href="{% url 'event_invite' event_pk=event.pk %}"><button type="submit" class="event-invite btn btn-success">Invite People</button></a>
+        {% endif %}
+    </section>
+    {% endif %}
+    {% if event.creator != user and event.type == 'Private' and invitation.confirmation == False %}
+        <button class="confirmation" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">Going</button>
+    {% endif %}
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- App JS -->
+    <script src="{% static 'scripts/app.js' %}"></script>
+    
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="animated bounceIn">All Contacts</h1>
+    {% if contacts %}
+        <ul class="list-group">
+            {% for contact in contacts %}
+                <li class="list-group-item">
+                    <h5>{{ contact.user2.username }}</h5>
+                    <p>{{ contact.user2.first_name }} {{ contact.user2.last_name }}</p>
+                    <small>Date Added: {{ contact.date_added }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>You have not added any contacts</h3>
+    {% endif %}
+{% endblock %}

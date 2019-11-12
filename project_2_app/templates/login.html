@@ -1,27 +1,32 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
-<h1>Login</h1>
+<h1 class="animated bounceIn">Login</h1>
 
+    <div class="d-md-none d-sm-none d-none d-lg-block">
+        <img class="signin-pic animated slideInDown" src="{% static 'images/Fairy.png' %}" alt="fairy">
+    </div>
+    
     {% if error %}
         <p style="background-color:firebrick;">{{error}}</p>
     {% endif %}
 
-    <section class="form-section">
+    <section class="form-section login-form">
         <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
-
             <p>
                 <label for="username">Username</label>
-                <input type="text" name='username' maxlength="25" minlength="2" required>
+                <input class="form-control" type="text" name='username' maxlength="25" minlength="2" required>
             </p>
             <p>
                 <label for="password">Password</label>
-                <input type="password" name='password' maxlength="25" minlength="4" required>
+                <input class="form-control" type="password" name='password' maxlength="25" minlength="4" required>
             </p>
-            <button type="submit"> Login </button>
-
+            <div class="auth-btn">
+                <button class="btn btn-success" type="submit">Login</button>
+            </div>
         </form>
     </section>
 

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {% if event.creator == user %}
+    <h1 class="animated bounceIn">Invite friends to {{ event.title }}</h1>
+    <section class="form-section invite-form-section">
+        <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">
+            {% csrf_token %}
+            {% if contacts %}
+                {% for contact in contacts %}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name="contact" value="{{ contact }}" class="invite-contact" aria-label="Checkbox for following text input">
+                            </div>
+                        </div>
+                        {{ contact }}
+                    </div>
+
+                {% endfor %}
+                    <button class="btn btn-success" type="submit">Invite</button>
+            {% else %}
+                <p>Add a contact to invite them to your event!</p>
+            {% endif %}
+        </form>
+    </section>
+    {% else %}
+    <h3>Error: You can only invite friends to events you created.</h3>
+    {% endif %}
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- App JS -->
+    <script src="{% static 'scripts/app.js' %}"></script>
+
+{% endblock %}

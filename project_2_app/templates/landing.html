@@ -1,7 +1,29 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
-<h1>Landing page</h1>
+    <h1 class="animated bounceIn">Welcome to The Event Fairy</h1>
+    <p class="app-description">Bring magic to all of your event planning!</p>
 
+    <div class="container landing-container">
+        <div class="row">
+            <div class="col-md">
+                <p>Here at The Event Fairy we believe in the everyday magic that surrounds all that we do.  The connections around us are endless, encompassing our relationships with other humans, our pets, and nature.  Make the most of your connections and allow us to bring some of our magic to your events and social gatherings, whether it's a formal event such as a wedding or dinner party, or a casual gathering meant to bring together others with the same interests, such as meeting up on the beach to play with your beloved corgis.
+                </p>
+                <p>We simplify the process of making arrangements by allowing you to connect with your friends and loved ones, or by helping you to find others who share your love of dogs, lasagna, digging clams, or whatever it is that strikes your fancy.  Create events, find events, invite the ones you love, like, or simply tolerate.  Allow our seamless process to create the space for more magic in your life.  
+                </p>
+            </div>
+            <div class="col-md">
+                <img src="{% static 'images/the-event-fairy.png' %}" alt="mushroom">
+            </div>
+        </div>
+    </div>
+
+    {% if not user.is_authenticated %}
+        <div class="cta">
+            <p>Ready to start creating events? Register now to get started!</p>
+            <a href="{% url 'register' %}"><button type="button" class="btn btn-danger">Register</button></a>
+        </div>
+    {% endif %}
 {% endblock %}
