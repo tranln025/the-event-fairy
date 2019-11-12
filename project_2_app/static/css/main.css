@@ -214,6 +214,19 @@ img {
     width: 300px;
 }
 
+.event-btns {
+    text-align: center;
+}
+
+.event-btns a {
+    margin: 0 10px;
+}
+
+.mb-3 {
+    border: 1px solid var(--forest-green);
+    margin: 0 auto;
+}
+
 /*-------------------Add Contact--------------*/
 
 .contact-form {
