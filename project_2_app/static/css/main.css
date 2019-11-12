@@ -77,13 +77,23 @@ h1 {
     margin-top: 50px;
 }
 
+/*----------------- Register ----------------*/
+
+.register-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.auth-btn {
+    text-align: center;
+}
+
 /*----------------- Login ----------------*/
 
 .login-form {
     color: var(--text-primary);
-    text-align: center;
     padding: 50px;
-    width: 400px;
+    max-width: 400px;
     margin: 0 auto;
 }
 
