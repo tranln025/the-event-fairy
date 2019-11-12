@@ -4,7 +4,7 @@
     {% if event %}
         {% if event.creator == user %}
             <section class="form-section event-create-form">
-                <h1>{{header}}</h1>
+                <h1 class="animated bounceIn">{{header}}</h1>
                 <form method="POST" class="event-form">
                     {% csrf_token %}
                     {{ form.as_p }}

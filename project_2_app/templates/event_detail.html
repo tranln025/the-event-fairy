@@ -4,10 +4,10 @@
 {% block content %}
 
     <section class="event-details">
-        <h1>Event Details</h1>
+        <h1 class="animated bounceIn">Event Details</h1>
     {% if user in guests or event.creator == user or event.type == 'Public' %}
 
-        <div class="card mb-3" style="max-width: 992px;">
+        <div class="event-detail-card card mb-3" style="max-width: 992px;">
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <img src="{{ event.image_link }}" class="card-img-top" alt="Image for {{ event.title }}">
