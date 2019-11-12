@@ -150,6 +150,10 @@ h1 {
     border-color: var(--forest-green);
 }
 
+.prof-pic-section img {
+    width: 100%;
+}
+
 .prof-pic-btn {
     padding-left: 80%;
 }
