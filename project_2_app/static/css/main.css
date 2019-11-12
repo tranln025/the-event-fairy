@@ -34,7 +34,7 @@ main {
     padding: 5%;
 }
 
-.navbar-2 {
+.footer {
     position: fixed;
     clear: both;
     width: 100%;
@@ -111,3 +111,6 @@ img {
     border-radius: 50%;
 }
 
+.img-container {
+    text-align: center;
+}
