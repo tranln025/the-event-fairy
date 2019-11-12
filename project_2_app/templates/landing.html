@@ -19,10 +19,13 @@
             </div>
         </div>
     </div>
+    {% if user.is_authenticated %}
+    
+    {% else %}
 
-    <div class="cta">
-        <p>Ready to start creating events? Register now to get started!</p>
-        <a href="{% url 'register' %}"><button type="button" class="btn btn-danger">Register</button></a>
-    </div>
-
+        <div class="cta">
+            <p>Ready to start creating events? Register now to get started!</p>
+            <a href="{% url 'register' %}"><button type="button" class="btn btn-danger">Register</button></a>
+        </div>
+    {% endif %}
 {% endblock %}
