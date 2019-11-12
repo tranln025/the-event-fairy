@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome, {{ username }}</h1>
+    <h1 class="profile-h1">Welcome, {{ username }}</h1>
 
     {% if prof_pic_link %}
         <section class="prof-pic-section">
@@ -19,7 +19,7 @@
         </section>
     {% endif %}
 
-    <h2>Contacts</h2>
+    <h2 class="profile-h2">Contacts</h2>
         <a href="{% url 'contact_add' %}">+</a>
         <ul class="list-group">
             {% for contact in contacts %}
@@ -29,7 +29,7 @@
             {% endfor %}
         </ul>
         
-    <h2>Your Events</h2>
+    <h2 class="profile-h2">Your Events</h2>
         {% if created_events %}
             {% for event in created_events %}
                 <div class="list-group">
@@ -48,7 +48,7 @@
             <p>You have not created any events. <a href="{% url 'event_create' %}">Create one now!</a></p> 
         {% endif %}
 
-    <h2>Events You're Attending</h2>
+    <h2 class="profile-h2">Events You're Attending</h2>
         {% if going_events %}
             {% for event in going_events %}
             <div class="list-group">

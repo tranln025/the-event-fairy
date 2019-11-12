@@ -84,6 +84,11 @@ img {
     padding-top: 50px;
 }
 
+.home-h1 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
 
 .home-nav{
     display:flex;
@@ -94,6 +99,8 @@ img {
     width:50%;
     border:1px solid lightgray;
     margin:5px;
+    background-color: var(--tan);
+    box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
 }
 .home-nav-item a {
     text-align: center;
@@ -101,6 +108,17 @@ img {
 
 .home-nav-item p {
     margin:3px;
+}
+
+.home-create-btn {
+    text-align: center;
+    border: 5px;
+    border-color: var(--olive-green);
+    box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
+}
+
+.home-btn {
+    background-color: var(--olive-green);
 }
 
 
@@ -113,4 +131,73 @@ img {
 
 .img-container {
     text-align: center;
+}
+
+.about-h1 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+/*----------------- Login ----------------*/
+.login-h1 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+.login-form {
+    color: var(--text-primary);
+    text-align: center;
+    padding: 50px;
+}
+
+/*-------------------Event List---------------*/
+.event-list-h1 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+/*-------------------Add Contact--------------*/
+.contact-h1 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+.contact-form {
+    color: var(--text-primary);
+    text-align: center;
+    padding: 50px;
+}
+
+/*------------------Profile-------------------*/
+.profile-h1 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+/* .prof-pic-section {
+    align-content: center;
+} */
+
+.profile-h2 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+/*--------------Event Create Form--------------*/
+.event-create-h1 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+.event-create-form {
+    color: var(--text-primary);
+    text-align: center;
+    padding: 50px;
 }
