@@ -30,6 +30,4 @@ $(`.confirmation`).on('click', () => {
     setTimeout(function() {
         window.location.reload();
     }, 100);
-
-   
 });

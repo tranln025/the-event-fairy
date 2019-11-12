@@ -2,7 +2,7 @@
 :root {
     --forest-green: #203E10;
     --olive-green: #516C2C;
-    --pale-green: #ECF1EA;
+    --pale-green: #fcfffb;
     --crimson: #D61B28;
     --tan: #D6BD8C;
     --brown: #421813;
@@ -32,6 +32,7 @@ body {
 
 main {
     padding: 5%;
+    margin-top: 15px;
 }
 
 .footer {
@@ -40,7 +41,7 @@ main {
     width: 100%;
     background-color: #203E10;
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
     font-family: 'Pacifico', cursive;
     height: 50px;
     margin-top: auto;
@@ -117,3 +118,73 @@ img {
 
 /*------------------ Profile --------------------*/
 
+.btn-success {
+    background-color: var(--forest-green);
+    border-color: var(--forest-green);
+}
+
+.prof-pic-btn {
+    padding-left: 80%;
+}
+
+.prof-pic-btn-change {
+    margin-top: 10px;
+}
+
+.prof-pic-section {
+    text-align: center;
+}
+
+.prof-pic-section img {
+    max-width: 400px;
+    border-radius: 30px;
+}
+
+.profile-section {
+    border: 2px solid var(--olive-green);
+    padding: 30px;
+    margin: 20px 10px;
+    -webkit-box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+    border-radius: 20px;
+};
+
+#id_image_link {
+    width: 100%;
+}
+
+.profile-section-header {
+    display: inline;
+    margin: 0 0 10px 10px;
+}
+
+.fa-plus {
+    color: var(--forest-green);
+}
+
+.add-contact {
+    text-align: right;
+}
+
+.contact-remove {
+    text-align: right;
+}
+
+.list-group {
+    margin-top: 15px;
+}
+
+/*------------------ Responsiveness --------------------*/
+
+@media (max-width: 992px) {
+    main {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-top: 50px;
+    }
+}
