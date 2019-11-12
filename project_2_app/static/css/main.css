@@ -5,7 +5,7 @@
     --olive-green: #516C2C;
     --pale-green: #fcfffb;
     --crimson: #D61B28;
-    --tan: #D6BD8C;
+    --tan: #eadaba;
     --brown: #421813;
     --text-primary: #152d08;
     --text-sub: #777;
@@ -68,7 +68,7 @@ h1 {
     font-size: 20px;
 }
 
-img {
+.landing-container img {
     width: 100%;
 }
 
@@ -77,12 +77,24 @@ img {
     margin-top: 50px;
 }
 
+/*----------------- Register ----------------*/
+
+.register-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.auth-btn {
+    text-align: center;
+}
+
 /*----------------- Login ----------------*/
 
 .login-form {
     color: var(--text-primary);
-    text-align: center;
     padding: 50px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 /*------------------ Home --------------------*/
@@ -178,6 +190,15 @@ img {
     color: var(--forest-green);
 }
 
+.contacts a {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.contacts a:hover {
+    color: var(--olive-green);
+}
+
 .add-contact {
     text-align: right;
 }
@@ -195,13 +216,44 @@ img {
     margin-top: 15px;
 }
 
-/* ----------------- Events ----------------- */
-
-.events-nav {
-    width: 300px;
+.fa-plus:hover {
+    color: var(--olive-green);
 }
 
-/*-------------------Add Contact--------------*/
+/* ----------------- Events ----------------- */
+
+.events-nav a {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.events-nav a:hover {
+    color: var(--olive-green);
+}
+
+.events-nav-item {
+    width: 100px;
+}
+
+.event-btns {
+    text-align: center;
+}
+
+.event-btns a {
+    margin: 0 10px;
+}
+
+.mb-3 {
+    border: 1px solid var(--forest-green);
+    margin: 0 auto;
+}
+
+.event-list-section {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/*------------------- dd Contact --------------*/
 
 .contact-form {
     color: var(--text-primary);
@@ -209,12 +261,36 @@ img {
     padding: 50px;
 }
 
+.contact-h3 {
+    text-align: center;
+}
 
-/*--------------Event Create Form--------------*/
+/*-------------- Event Create Form --------------*/
 
 .event-create-form {
     color: var(--text-primary);
     text-align: center;
+}
+
+/*-------------- Invite Form --------------*/
+
+.invite-form {
+    max-width: 150px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.invite-form-section {
+    margin-top: 50px;
+}
+
+.input-group-prepend {
+    margin-right: 10px;
+}
+
+.input-group-text {
+    background-color: rgba(0,0,0,0);
+    border: none;
 }
 
 /*------------------ Responsiveness --------------------*/

@@ -4,14 +4,22 @@
 {% block content %}
     {% if event.creator == user %}
     <h1>Invite friends to {{ event.title }}</h1>
-    <section class="form-section">
+    <section class="form-section invite-form-section">
         <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">
             {% csrf_token %}
             {% if contacts %}
                 {% for contact in contacts %}
-                    <input type="checkbox" name="contact" value="{{ contact }}" class="invite-contact">{{ contact }}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" name="contact" value="{{ contact }}" class="invite-contact" aria-label="Checkbox for following text input">
+                            </div>
+                        </div>
+                        {{ contact }}
+                    </div>
+
                 {% endfor %}
-                    <button type="submit">Invite</button>
+                    <button class="btn btn-success" type="submit">Invite</button>
             {% else %}
                 <p>Add a contact to invite them to your event!</p>
             {% endif %}
