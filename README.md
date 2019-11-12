@@ -2,6 +2,8 @@
 We created The Event Fairy for anyone seeking new adventures. With this app, you can browse Public Events, which are open to anyone, or Private Events, which are more exclusive. Create your own events, add other users as contacts, and invite them to your events, all in one place.
 
 ## Wireframes
+!(https://i.imgur.com/VOJGJcs.png)
+!(https://i.imgur.com/hqGx91l.png)
 
 ## User Stories
 1. User sees landing page, reads description detailing purpose of app
