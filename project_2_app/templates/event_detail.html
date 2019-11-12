@@ -27,12 +27,12 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-muted">
-                {% if event.type == 'Private' %}
-                <p>Guests Invited: {{ guestlist }}</p>
-                <p>Guests Attending: {{ attending_list }}</p>
-                {% endif %}
-            </div>
+            {% if event.type == 'Private' %}
+                <div class="card-footer text-muted">
+                    <p>Guests Invited: {{ guestlist }}</p>
+                    <p>Guests Attending: {{ attending_list }}</p>
+                </div>
+            {% endif %}
         </div>
     </section>
 

@@ -5,7 +5,7 @@
     --olive-green: #516C2C;
     --pale-green: #fcfffb;
     --crimson: #D61B28;
-    --tan: #D6BD8C;
+    --tan: #eadaba;
     --brown: #421813;
     --text-primary: #152d08;
     --text-sub: #777;
@@ -210,8 +210,17 @@ img {
 
 /* ----------------- Events ----------------- */
 
-.events-nav {
-    width: 300px;
+.events-nav a {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.events-nav a:hover {
+    color: var(--olive-green);
+}
+
+.events-nav-item {
+    width: 100px;
 }
 
 .event-btns {
@@ -224,6 +233,11 @@ img {
 
 .mb-3 {
     border: 1px solid var(--forest-green);
+    margin: 0 auto;
+}
+
+.event-list-section {
+    max-width: 80%;
     margin: 0 auto;
 }
 
