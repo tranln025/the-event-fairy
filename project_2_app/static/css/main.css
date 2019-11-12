@@ -59,6 +59,14 @@ h1 {
     margin-top: auto;
 }
 
+.signin-pic {
+    position: fixed;
+    height: 400px;
+    right: 50px;
+    top: 30%;
+    z-index: -1;
+}
+
 /* ----------------- Landing ----------------- */
 
 .app-description {
