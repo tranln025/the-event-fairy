@@ -8,7 +8,7 @@
                 <form method="POST" class="event-form">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </section>
         {% else %}
@@ -21,7 +21,7 @@
             <form method="POST" class="event-form">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
         </section>
     {% endif %}
