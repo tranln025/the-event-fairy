@@ -116,6 +116,8 @@ def prof_pic_edit(request):
 @login_required
 def contacts_list(request):
     contacts = Contact.objects.filter(user1=request.user)
+    for contact in contacts:
+        print(contact.user2.username)
     context = {'contacts': contacts}
     return render(request, 'contacts_list.html', context)
 

@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Add a Contact</h1>
-    <h3>Type in a username to add them as a new contact.</h3>
+    <h3 class="contact-h3">Type in a username to add them as a new contact.</h3>
     <section class="form-section contact-form">
         <form action="{% url 'contact_add' %}" method="POST" class="add-contact-form">
             {% csrf_token %}
@@ -13,7 +13,7 @@
             {% if error %}
                 <p>{{ error }}</p>
             {% endif %}
-            <button class="submit">Add Contact</button>
+            <button type="submit" class="btn btn-success">Add Contact</button>
         </form>
     </section>
 {% endblock %}

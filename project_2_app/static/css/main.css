@@ -178,6 +178,15 @@ img {
     color: var(--forest-green);
 }
 
+.contacts a {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.contacts a:hover {
+    color: var(--olive-green);
+}
+
 .add-contact {
     text-align: right;
 }
@@ -195,6 +204,10 @@ img {
     margin-top: 15px;
 }
 
+.fa-plus:hover {
+    color: var(--olive-green);
+}
+
 /* ----------------- Events ----------------- */
 
 .events-nav {
@@ -209,6 +222,9 @@ img {
     padding: 50px;
 }
 
+.contact-h3 {
+    text-align: center;
+}
 
 /*--------------Event Create Form--------------*/
 
