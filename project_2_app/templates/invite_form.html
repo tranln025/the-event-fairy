@@ -3,7 +3,7 @@
 
 {% block content %}
     {% if event.creator == user %}
-    <h1>Invite friends to {{ event.title }}</h1>
+    <h1 class="animated bounceIn">Invite friends to {{ event.title }}</h1>
     <section class="form-section invite-form-section">
         <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">
             {% csrf_token %}

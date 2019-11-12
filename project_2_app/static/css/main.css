@@ -67,6 +67,12 @@ h1 {
     z-index: -1;
 }
 
+.btn {
+    -webkit-box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+}
+
 /* ----------------- Landing ----------------- */
 
 .app-description {
@@ -265,7 +271,13 @@ h1 {
     margin: 0 auto;
 }
 
-/*------------------- dd Contact --------------*/
+.event-detail-card {
+    -webkit-box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 25px -8px rgba(0,0,0,0.75);
+}
+
+/*------------------- Add Contact --------------*/
 
 .contact-form {
     color: var(--text-primary);
