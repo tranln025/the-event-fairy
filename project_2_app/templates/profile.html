@@ -10,7 +10,7 @@
         </section>
     {% else %}
         <section class="prof-pic-section" data-prof-edit="{% url 'prof_pic_edit' %}">
-            <p>Upload a profile picture</p>
+            <p>Looks like you don't have a profile picture yet! Upload one below to let all your guests see who's behind the event magic!</p>
             <form method="post" class="profile-pic-form">
                 {% csrf_token %}
                 {{ form.as_p }}

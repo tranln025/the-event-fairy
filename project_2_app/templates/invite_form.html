@@ -5,7 +5,7 @@
     {% if event.creator == user %}
     <h1>Invite friends to {{ event.title }}</h1>
     <section class="form-section">
-        <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}">
+        <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">
             {% csrf_token %}
             {% if contacts %}
                 {% for contact in contacts %}

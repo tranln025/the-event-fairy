@@ -12,6 +12,10 @@ $(`.invite-form`).on('submit', (event) => {
         success: console.log("Success"),
         error: err => console.log(err)
     });
+
+    setTimeout(function() {
+        window.location.href = $(`.invite-form`).attr('data-event-detail-url');
+    }, 100);
 });
 
 $(`.confirmation`).on('click', () => {
@@ -22,4 +26,10 @@ $(`.confirmation`).on('click', () => {
         success: console.log("Success"),
         error: err => console.log("err >>>>", err)
     });
+
+    setTimeout(function() {
+        window.location.reload();
+    }, 100);
+
+   
 });

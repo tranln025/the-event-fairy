@@ -42,7 +42,7 @@ main {
     text-align: center;
     font-size: 12px;
     font-family: 'Pacifico', cursive;
-    height: 30px;
+    height: 50px;
     margin-top: auto;
 }
 
@@ -114,3 +114,6 @@ img {
 .img-container {
     text-align: center;
 }
+
+/*------------------ Profile --------------------*/
+
