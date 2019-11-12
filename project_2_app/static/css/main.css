@@ -92,6 +92,15 @@ img {
     flex-direction: row;
 }
 
+@media only screen and (max-width: 600px) {
+    .home-nav {
+      flex-direction: column;
+    }
+    .home-nav-item{
+        width:100% !important;
+    }
+  }
+
 .home-nav-item{
     width:50%;
     border:1px solid lightgray;
