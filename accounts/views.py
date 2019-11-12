@@ -36,7 +36,7 @@ def register(request):
                     last_name=last_name,
                     )
                     user.save()
-                    return redirect('home')
+                    return redirect('login')
         else:
             context = {'error':'Passwords do not match'}
             return render(request, 'register.html', context)

@@ -1,43 +1,47 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
 <h1>Register</h1>
+    <div class="d-md-none d-sm-none d-none d-lg-block animated slideInDown">
+        <img class="signin-pic" src="{% static 'images/Fairy.png' %}" alt="fairy">
+    </div>
 
-{% if error %}
-<p style="background-color: firebrick;">{{error}}</p>
-{% endif %}
+    {% if error %}
+    <p style="background-color: firebrick;">{{error}}</p>
+    {% endif %}
 
-<section class="form-section">
-    <form action="{% url 'register' %}" method="POST" class="register-form">
-        {% csrf_token %}
-        <p>
-            <label for="first_name">First Name</label>
-            <input class="form-control" type="text" name="first_name" required maxlength="25" minlength="2">
-        </p>
-        <p>
-            <label for="last_name">Last Name</label>
-            <input class="form-control" type="text" name="last_name" required maxlength="25" minlength="2">
-        </p>
-        <p>
-            <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" required maxlength="25" minlength="2">
-        </p>
-        <p>
-            <label for="username">Username</label>
-            <input class="form-control" type="text" name="username" required maxlength="25" minlength="2">
-        </p>
-        <p>
-            <label for="password">Password</label>
-            <input class="form-control" type="password" name="password" required maxlength="25" minlength="4">
-        </p>
-        <p>
-            <label for="password2">Confirm Password</label>
-            <input class="form-control" type="password" name="password2" required maxlength="25" minlength="4">
-        </p>
-        <div class="auth-btn">
-            <button class="btn btn-success" type="submit">Register</button>
-        </div>
-    </form>
-</section>
+    <section class="form-section">
+        <form action="{% url 'register' %}" method="POST" class="register-form">
+            {% csrf_token %}
+            <p>
+                <label for="first_name">First Name</label>
+                <input class="form-control" type="text" name="first_name" required maxlength="25" minlength="2">
+            </p>
+            <p>
+                <label for="last_name">Last Name</label>
+                <input class="form-control" type="text" name="last_name" required maxlength="25" minlength="2">
+            </p>
+            <p>
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" required maxlength="25" minlength="2">
+            </p>
+            <p>
+                <label for="username">Username</label>
+                <input class="form-control" type="text" name="username" required maxlength="25" minlength="2">
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" required maxlength="25" minlength="4">
+            </p>
+            <p>
+                <label for="password2">Confirm Password</label>
+                <input class="form-control" type="password" name="password2" required maxlength="25" minlength="4">
+            </p>
+            <div class="auth-btn">
+                <button class="btn btn-success" type="submit">Register</button>
+            </div>
+        </form>
+    </section>
 {% endblock %}
