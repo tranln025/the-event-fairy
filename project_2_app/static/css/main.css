@@ -35,6 +35,12 @@ main {
     margin-top: 15px;
 }
 
+h1 {
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
 .footer {
     position: fixed;
     clear: both;
@@ -48,12 +54,6 @@ main {
 }
 
 /* ----------------- Landing ----------------- */
-
-.landing-h1 {
-    color: var(--text-primary);
-    font-family: 'Pacifico', cursive;
-    text-align: center;
-}
 
 .app-description {
     color: var(--text-primary);
@@ -73,12 +73,6 @@ img {
 
 /*----------------- Login ----------------*/
 
-.login-h1 {
-    color: var(--text-primary);
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-}
-
 .login-form {
     color: var(--text-primary);
     text-align: center;
@@ -91,12 +85,6 @@ img {
     width: 100%;
     height: 100%;
     padding-top: 50px;
-}
-
-.home-h1 {
-    color: var(--text-primary);
-    text-align: center;
-    font-family: 'Pacifico', cursive;
 }
 
 .home-nav{
@@ -136,12 +124,6 @@ img {
     width:200px;
     height:200px;
     border-radius: 50%;
-}
-
-.about-h1 {
-    color: var(--text-primary);
-    text-align: center;
-    font-family: 'Pacifico', cursive;
 }
 
 .img-container {
@@ -207,31 +189,13 @@ img {
     margin-top: 15px;
 }
 
-/* .profile-h1, .profile-h2 {
-    color: var(--text-primary);
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-} */
-
 /* ----------------- Events ----------------- */
 
 .events-nav {
     width: 300px;
 }
 
-.event-list-h1 {
-    color: var(--text-primary);
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-}
-
 /*-------------------Add Contact--------------*/
-
-.contact-h1 {
-    color: var(--text-primary);
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-}
 
 .contact-form {
     color: var(--text-primary);
@@ -242,16 +206,9 @@ img {
 
 /*--------------Event Create Form--------------*/
 
-.event-create-h1 {
-    color: var(--text-primary);
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-}
-
 .event-create-form {
     color: var(--text-primary);
     text-align: center;
-    padding: 50px;
 }
 
 /*------------------ Responsiveness --------------------*/
