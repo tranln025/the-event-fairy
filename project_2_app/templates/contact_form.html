@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Add a Contact</h1>
     <h3>Type in a username to add them as a new contact.</h3>
-    <section class="form-section">
+    <section class="form-section contact-form">
         <form action="{% url 'contact_add' %}" method="POST" class="add-contact-form">
             {% csrf_token %}
             <p>

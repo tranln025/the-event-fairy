@@ -3,12 +3,12 @@
 {% block content %}
     {% if event %}
         {% if event.creator == user %}
-            <section class="form-section">
+            <section class="form-section event-create-form">
                 <h1>{{header}}</h1>
                 <form method="POST" class="event-form">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </section>
         {% else %}
@@ -16,12 +16,12 @@
         {% endif %}
 
     {% else %}
-        <section class="form-section">
+        <section class="form-section event-create-form">
             <h1>{{header}}</h1>
             <form method="POST" class="event-form">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
         </section>
     {% endif %}
