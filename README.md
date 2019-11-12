@@ -33,6 +33,8 @@ We created The Event Fairy for anyone seeking new adventures. With this app, you
 - CSS
 - Javascript
 - JQuery
+- Bootstrap
+- Animate.css
 
 ## Future Development
 - Time filters (past, present, future events)
