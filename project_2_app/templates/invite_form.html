@@ -5,7 +5,7 @@
     {% if event.creator == user %}
     <h1>Invite friends to {{ event.title }}</h1>
     <section class="form-section">
-        <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}">
+        <form class="invite-form" method="post" data-invite-url="{% url 'event_invite' event_pk=event.pk %}" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">
             {% csrf_token %}
             {% if contacts %}
                 {% for contact in contacts %}
@@ -23,7 +23,7 @@
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- Invite JS -->
+    <!-- App JS -->
     <script src="{% static 'scripts/app.js' %}"></script>
 
 {% endblock %}
