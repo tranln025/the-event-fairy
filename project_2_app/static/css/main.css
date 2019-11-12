@@ -34,18 +34,16 @@ main {
     padding: 5%;
 }
 
-footer {
-    position: absolute;
+.footer {
+    position: fixed;
+    clear: both;
+    width: 100%;
     background-color: #203E10;
     text-align: center;
     font-size: 12px;
     font-family: 'Pacifico', cursive;
     height: 30px;
-    width: 100%;
-}
-
-#sticky-footer {
-    flex-shrink: none;
+    margin-top: auto;
 }
 
 /* ----------------- Landing ----------------- */
@@ -113,3 +111,6 @@ img {
     border-radius: 50%;
 }
 
+.img-container {
+    text-align: center;
+}
