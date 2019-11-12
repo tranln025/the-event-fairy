@@ -68,7 +68,7 @@ h1 {
     font-size: 20px;
 }
 
-img {
+.landing-container img {
     width: 100%;
 }
 
@@ -83,6 +83,8 @@ img {
     color: var(--text-primary);
     text-align: center;
     padding: 50px;
+    width: 400px;
+    margin: 0 auto;
 }
 
 /*------------------ Home --------------------*/
