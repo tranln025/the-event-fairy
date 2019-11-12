@@ -122,12 +122,12 @@ img {
 .home-create-btn {
     text-align: center;
     border: 5px;
-    border-color: var(--olive-green);
+    /* border-color: var(--olive-green); */
     box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
 }
 
 .home-btn {
-    background-color: var(--olive-green);
+    /* background-color: var(--olive-green); */
 }
 
 /*------------------ About --------------------*/
@@ -148,6 +148,59 @@ img {
     text-align: center;
 }
 
+ /* Small devices (landscape phones, 576px and up) */
+/* @media (min-width: 576px) { 
+    .img-1 {
+        align-self: auto;
+    }
+    .p-1 {
+        text-align: center;
+    }
+    .img-2 {
+        align-self: auto;
+    }
+    .p-2 {
+        text-align: center;
+    }
+    .img-3 {
+        align-self: auto;
+    }
+    .p-3 {
+        text-align: center;
+    }
+
+ } */
+
+ /* Medium devices (tablets, 768px and up) */
+/* @media (min-width: 768px) {
+    .p-1 {
+        float: left;
+    }
+    .img-1 {
+        float: right;
+    }
+    .img-2 {
+        float: left;
+    }
+    .p-2 {
+        float: right;
+    }
+    .p-3 {
+        float: left;
+    }
+    .img-3 {
+        float: right;
+    } */
+/* } */
+@media screen and (max-width: 768px) {
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    .wrapper div:first-child {
+      order: 1;
+    }
+  }
 /*------------------ Profile --------------------*/
 
 .btn-success {

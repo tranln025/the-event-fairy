@@ -9,16 +9,19 @@
             <p>Get started by browsing our list of public events here at The Event Fairy!</p>
             <p>Search for your interests and perhaps you'll allow our special brand of magic to wash over your future events calendar.  Sign up, invite your friends and loved ones, and create your own events.  Events you create can be kept private for only those who you deem worthy of an invite, or can be made public, for all to attend, perhaps allowing for you to connect with the Uncle Buck you never knew your family needed.</p>
             <p>Take a chance.  Allow The Event Fairy to shine it's magic on your life.</p>
-            <a href="{% url 'public_list' %}" class="list-group-item list-group-item-action"></a><button class="mt-auto home-btn btn-lg bt-block">Browse Public Events</button></a>
+                <div class="container home-btn rounded mt-auto">
+                    <a href="{% url 'public_list' %}" class="list-group-item list-group-item-action">Browse Public Events</a>
+                </div>
         </div>
 
         <div class='home-nav-item card-body d-flex flex-column rounded'>
             <p>Welcome back to The Event Fairy!</p>
             <p>Check your invites, invite others, and create more events and gatherings for you and yours.  Whether you're having an old-fashioned clam bake or looking for others to nerd out with, you're in the right place.  Set your spirit free while exploring all of the options available to you in this wonderful world we live in.</p>
             <p>Here at The Event Fairy we embrace all forms of life and living, while treating others with compassion and kindness.</p>
-            <button class="mt-auto home-btn btn-lg bt-block"><a href="{% url 'private_list' %}" class="list-group-item list-group-item-action">View Events You're Invited To</a></button>
+                <div class="container home-btn rounded mt-auto">
+                    <a href="{% url 'private_list' %}" class="list-group-item list-group-item-action">View Events You're Invited To</a>
+                </div>
         </div>
-
     </div>
 
     <div class="home-create-btn home-btn rounded">
