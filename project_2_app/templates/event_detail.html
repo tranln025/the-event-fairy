@@ -50,7 +50,7 @@
     </section>
     {% endif %}
     {% if event.creator != user and event.type == 'Private' and invitation.confirmation == False %}
-        <button class="confirmation" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">Going</button>
+        <button class="confirmation btn btn-success" data-event-detail-url="{% url 'event_detail' event_pk=event.pk %}">Going</button>
     {% endif %}
 
     <!-- Jquery -->

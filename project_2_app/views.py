@@ -13,7 +13,7 @@ from .models import Profile, Event, Invitation, Contact, Comment
 ########## Base Pages ##########
 
 def test(request):
-  return HttpResponse("Goodbye rocket ship. Hello Home.")
+    return HttpResponse("Goodbye rocket ship. Hello Home.")
 
 def landing(request):
     return render(request, 'landing.html')
