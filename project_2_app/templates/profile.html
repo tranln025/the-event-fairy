@@ -1,66 +1,107 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h1 class="animated bounceIn">Welcome, {{ username }}</h1>
 
-    
-    <h1>Welcome, {{ username }}</h1>
-
-    {% if user.image_link %}
-        <img src="{{ user.image_link }}" alt="profile picture">
-    {% else %}
-        <section class="form-section">
-            <p>Upload a profile picture</p>
-            <form method="post" class="profile-pic-form">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Save</button>
-            </form>
-        </section>
-    {% endif %}
-
-    <h2>Contacts</h2>
-        <a href="{% url 'contact_add' %}">+</a>
-        <ul class="list-group">
-            {% for contact in contacts %}
-                <li class="list-group-item">{{ contact }}</li>
-            {% endfor %}
-        </ul>
-        
-    <h2>Your Events</h2>
-        {% if created_events %}
-            {% for event in created_events %}
-                <div class="list-group">
-                    <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{ event.title }}</h5>
-                            <small>Click to view details</small>
+    <section class="profile-container row">
+        <section class="profile-personal col-md">
+            <div class="profile-section pic-or-form">
+                {% if prof_pic_link %}
+                    <section class="prof-pic-section">
+                        <img src="{{ prof_pic_link }}" alt="profile picture">
+                        <div class="prof-pic-btn prof-pic-btn-change">
+                            <a href="{% url 'prof_pic_edit' %}"><button class="btn btn-success edit-prof-pic">Change</button></a>
                         </div>
-                        <p class="mb-1">{{ event.datetime }}</p>
-                        <p class="mb-1">{{ event.location }}</p>
-                        <small>Hosted by {{ event.creator }}</small>
-                    </a>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>You have not created any events.</p>
-        {% endif %}
-
-    <h2>Events You're Invited To</h2>
-        {% if invited_events %}
-            {% for event in invited_events %}
-            <div class="list-group">
-                <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ event.title }}</h5>
-                        <small>Click to view details</small>
-                    </div>
-                    <p class="mb-1">{{ event.datetime }}</p>
-                    <p class="mb-1">{{ event.location }}</p>
-                    <small>Hosted by {{ event.creator }}</small>
-                </a>
+                    </section>
+                {% else %}
+                    <section class="prof-pic-section" data-prof-edit="{% url 'prof_pic_edit' %}">
+                        <p>Upload a photo below to let all your guests see who's behind the event magic!</p>
+                        <form method="post" class="profile-pic-form">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="prof-pic-btn">
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </form>
+                    </section>
+                {% endif %}
             </div>
-            {% endfor %}
-        {% else %}
-            <p>You have no invites.</p>
-        {% endif %}
+
+            <div class="profile-section contacts">
+                <div class="row">
+                    <div class="col-9">
+                        <i class="fas fa-address-card fa-2x"></i>
+                        <a href="{% url 'contacts_list' %}"><h2 class="profile-section-header">Contacts</h2></a>
+                    </div>
+                    <div class="col-2 add-contact">
+                        <a href="{% url 'contact_add' %}"><i class="fas fa-plus fa-2x"></i></a>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    {% for contact in contacts %}
+                        <li class="list-group-item">
+                            <div class="contacts-list row">
+                                <div class="contact-name col">{{ contact }}</div>
+                                <div class="contact-remove col"><a href="{% url 'contact_delete' contact_pk=contact.pk %}">Remove</a></div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+            
+        <section class="profile-events col-md">
+            <div class="profile-section events-created">
+                <div class="row">
+                    <div class="col-9">
+                        <i class="far fa-calendar-alt fa-2x"></i>
+                        <h2 class="profile-section-header">Your Events</h2>
+                    </div>
+                    <div class="col-3 create-event">
+                        <a href="{% url 'event_create' %}"><i class="fas fa-plus fa-2x"></i></a>
+                    </div>
+                </div>
+                {% if created_events %}
+                    {% for event in created_events %}
+                        <div class="list-group">
+                            <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ event.title }}</h5>
+                                    <small>Click to view details</small>
+                                </div>
+                                <p class="mb-1">{{ event.date_and_time }}</p>
+                                <p class="mb-1">{{ event.location }}</p>
+                                <small>Hosted by {{ event.creator }}</small>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>You have not created any events. <a href="{% url 'event_create' %}">Create one now!</a></p> 
+                {% endif %}
+            </div>
+
+            <div class="profile-section events-attending">
+                <i class="far fa-calendar-check fa-2x"></i>
+                <h2 class="profile-section-header">Events You're Attending</h2>
+                {% if going_events %}
+                    {% for event in going_events %}
+                    <div class="list-group">
+                        <a href="{% url 'event_detail' event_pk=event.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ event.title }}</h5>
+                                <small>Click to view details</small>
+                            </div>
+                            <p class="mb-1">{{ event.date_and_time }}</p>
+                            <p class="mb-1">{{ event.location }}</p>
+                            <small>Hosted by {{ event.creator }}</small>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>You have not confirmed your attendance for any events. View <a href="{% url 'private_list' %}">Events You're Invited To</a> and click Going to let the host know!</p>
+                {% endif %}
+            </div>
+        </section>
+    </section>
+    
 {% endblock %}

@@ -1,14 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if event %}
+        {% if event.creator == user %}
+            <section class="form-section event-create-form">
+                <h1 class="animated bounceIn">{{header}}</h1>
+                <form method="POST" class="event-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </section>
+        {% else %}
+            <h3>Error: You can only edit events you've created.</h3>
+        {% endif %}
 
-<section class="form-section">
-    <h1>{{header}}</h1>
-    <form method="POST" class="event-form">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
-    </form>
-</section>
+    {% else %}
+        <section class="form-section event-create-form">
+            <h1>{{header}}</h1>
+            <form method="POST" class="event-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </section>
+    {% endif %}
 
 {% endblock %}
